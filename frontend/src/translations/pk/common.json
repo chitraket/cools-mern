@@ -1,0 +1,196 @@
+{
+    "navbar": {
+        "home": "گھر",
+        "login": "لاگ ان کریں",
+        "register":"رجسٹر کریں",
+        "dashboard":"ڈیش بورڈ",
+        "order":"ترتیب",
+        "favorite":"پسندیدہ",
+        "items":"اشیاء",
+        "profile":"پروفائل",
+        "logout":"لاگ آوٹ"
+    },
+    "footer":{
+        "categories":"اقسام"
+    },
+    "home":{
+        "brand":"برانڈز",
+        "new_product":"نئی مصنوعات",
+        "best_selling_product":"بہترین فروخت ہونے والی مصنوعات" 
+    },
+    "login":{
+        "login":"لاگ ان کریں",
+        "home":"گھر",
+        "email":"ای میل",
+        "password":"پاس ورڈ",
+        "forgot_password":"? پاسورڈ بھول گے",
+        "login_validation":{
+            "email_required":"ای میل کی ضرورت ہے۔",
+            "email_invaliad":"ای میل غلط ہے.",
+            "password_required":"پاس ورڈ کی ضرورت ہے۔",
+            "password_invaliad":"پاس ورڈ غلط ہے۔",
+            "password_characters":"پاس ورڈ 8 حروف کا ہونا ضروری ہے",
+            "email_password_invalied":"غلط ای میل یا پاس ورڈ."
+        }
+    },
+    "register":{
+        "register":"رجسٹر کریں",
+        "home":"گھر",
+        "email":"ای میل",
+        "name":"نام",
+        "password":"پاس ورڈ",
+        "register_validation":{
+            "name_required":"نام کی ضرورت ہے۔",
+            "email_already_taken":"ای میل کے پاس پہلے سے ہی لیا گیا ہے."
+        }
+    },
+    "forgot_password":{
+        "forgot_password":"فروگوٹ پاس ورڈ",
+        "email":"ای میل",
+        "home":"گھر",
+        "send_email":"ای میل بھیجیں",
+        "email_send_to":"{{user}} : ای میل بھیج دی گئ ",
+        "forgot_password_validation":{
+            "email_not_found":"ای میل بھیجیںاس ای میل کے ساتھ صارف نہیں ملا۔"
+        }
+    },
+    "reset_password":{
+        "reset_password":"پاس ورڈ ری سیٹ",
+        "home":"گھر",
+        "new_password":"نیا پاس ورڈ",
+        "old_password":"پرانا پاسورڈ",
+        "confirm_passowrd":"پاس ورڈ کی تصدیق کریں",
+        "set_passowrd":"پاس ورڈ رکھیں",
+        "successfully_password":"پاس ورڈ کامیابی کے ساتھ اپ ڈیٹ ہوا۔",
+        "reset_password_validation":{
+            "password_match":"پاس ورڈ میچ نہیں کرتا.",
+            "password_token":"پاس ورڈ کو دوبارہ ترتیب دینے والا ٹوکن غلط ہے یا اس کی میعاد ختم ہوگئی ہے۔"
+        }
+    },
+    "profile":{
+        "profile":"پروفائل",
+        "home":"گھر",
+        "full_name":"پورا نام",
+        "email":"ای میل",
+        "joined_on":"شمولیت کی تاریخ",
+        "edit_profile":"پروفائل میں ترمیم کریں",
+        "change_password":"پاس ورڈ تبدیل کریں"
+    },
+    "update_password":{
+        "update_password":"پاس ورڈ کو اپ ڈیٹ کریں",
+        "home":"گھر",
+        "new_password":"نیا پاس ورڈ",
+        "old_password":"پرانا پاسورڈ",
+        "successfully_password":"پاس ورڈ کامیابی کے ساتھ اپ ڈیٹ ہوا۔",
+        "update_password_validation":{
+            "old_password_incorrect":"پرانا پاس ورڈ غلط ہے"
+        }
+    },
+    "update_profile":{
+        "update_profile":"پروفائل کو اپ ڈیٹ کریں",
+        "name":"نام",
+        "email":"گھر",
+        "home":"ای میل",
+        "successfully_user":"صارف کامیابی کے ساتھ اپ ڈیٹ ہوا۔",
+        "update_profile_validation":{
+            "name_required":"نام کی ضرورت ہے۔"
+        }
+    },
+    "search":{
+        "search":"تلاش کریں"
+    },
+    "favorite":{
+        "favorite":"پسندیدہ",
+        "home":"گھر",
+        "image":"تصویر",
+        "name":"نام",
+        "price":"قیمت",
+        "delete":"حذف کریں",
+        "remove_favorite":"کامیابی کے ساتھ پسندیدہ پوسٹ ہٹا دیں۔",
+        "add_favorite":"کامیابی کے ساتھ پسندیدہ پوسٹ شامل کریں۔",
+        "empty_favorite":"آپ کا پسندیدہ خالی ہے۔"
+    },
+    "reviews":{
+        "reviews_other":"دوسرے کے جائزے"
+    },
+    "product_details":{
+        "brand":"برانڈ",
+        "availability":"دستیابی",
+        "home":"گھر",
+        "products":"مصنوعات",
+        "category":"قسم",
+        "qty":"مقدار",
+        "overview":"جائزہ",
+        "reviews":"جائزہ",
+        "related_products":"متعلقہ مصنوعات",
+        "post_login":"اپنا جائزہ پوسٹ کرنے کے لئے لاگ ان کریں۔",
+        "submit_review":"اپنا جائزہ پیش کریں",
+        "submit_review_msg":"جائزہ کامیابی کے ساتھ پوسٹ کیا گیا",
+        "submit":"جمع کرائیں"
+    },
+    "cart":{
+        "empty_cart":"آپ کی ٹوکری خالی ہے",
+        "item_add_cart":"آئٹم ٹوکری میں شامل کیا گیا۔",
+        "view_cart":"ٹوکری دیکھیں",
+        "sub_total":"ذیلی کل",
+        "home":"گھر",
+        "shopping_cart":"خریداری کی ٹوکری",
+        "image":"تصویر",
+        "name":"نام",
+        "category":"قسم",
+        "unit_price":"اکائی قیمت",
+        "delete":"حذف کریں",
+        "total":"کل",
+        "quantity":"مقدار",
+        "check_out":"اس کو دیکھو"
+    },
+    "shopping":{
+        "home":"گھر",
+        "shopping":"پتہ کی معلومات",
+        "address":"پتہ",
+        "city":"شہر",
+        "phone":"فون نمبر",
+        "post_code":"پوسٹ کوڈ",
+        "country":"ملک"
+    },
+    "confirm_order":{
+        "home":"گھر",
+        "confirm_order":"حکم کی تصدیق",
+        "address":"پتہ",
+        "phone":"فون نمبر",
+        "image":"تصویر",
+        "name":"نام",
+        "sub_total":"ذیلی کل",
+        "category":"قسم",
+        "unit_price":"اکائی قیمت",
+        "delete":"حذف کریں",
+        "total":"کل",
+        "quantity":"مقدار",
+        "order_success":"آرڈر کامیابی",
+        "shopping":"خریداری",
+        "tax":"ٹیکس"
+    },
+    "card_info":{
+        "card_info":"کارڈ کی معلومات",
+        "home":"گھر",
+        "card":"کارڈ نمبر",
+        "card_expiry":"کارڈ کی میعاد ختم ہونے",
+        "card_cvc":"کارڈ سیویسی"
+    },
+    "order_success":{
+        "order_success_msg":"آپ کا آرڈر کامیابی کے ساتھ دیا گیا ہے۔"
+    },
+    "logout":{
+        "logout_msg":"کامیابی کے ساتھ لاگ آؤٹ ہوا۔"
+    },
+    "brand":{
+        "brand_not_product":"مصنوعہ نہیں ملا :(",
+        "new_product":"نئی مصنوعات",
+        "best_selling_product":"بہترین فروخت ہونے والی مصنوعات" 
+    },
+    "category":{
+        "category_not_product":"مصنوعہ نہیں ملا :("
+    }
+
+}
+

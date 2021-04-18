@@ -1,0 +1,195 @@
+{
+    "navbar": {
+        "home": "বাড়ি",
+        "login": "প্রবেশ করুন",
+        "register":"নিবন্ধন",
+        "dashboard":"ড্যাশবোর্ড",
+        "order":"অর্ডার",
+        "favorite":"প্রিয়",
+        "items":"আইটেমের",
+        "profile":"প্রোফাইল",
+        "logout":"প্রস্থান"
+    },
+    "footer":{
+        "categories":"বিভাগ"
+    },
+    "home":{
+        "brand":"ব্র্যান্ডগুলি",
+        "new_product":"নতুন পণ্য",
+        "best_selling_product":"সেরা বিক্রয় পণ্য"
+    },
+    "login":{
+        "login":"প্রবেশ করুন",
+        "home":"বাড়ি",
+        "email":"ইমেল",
+        "password":"পাসওয়ার্ড",
+        "forgot_password":"পাসওয়ার্ড ভুলে গেছেন ?",
+        "login_validation":{
+            "email_required":"ইমেল প্রয়োজন।",
+            "email_invaliad":"ইমেল অবৈধ।",
+            "password_required":"পাসওয়ার্ড প্রয়োজন।",
+            "password_invaliad":"পাসওয়ার্ড অবৈধ।",
+            "password_characters":"পাসওয়ার্ডটি 8 টি অক্ষরের হতে হবে।",
+            "email_password_invalied":"অবৈধ ইমেল বা পাসওয়ার্ড।"
+        }
+    },
+    "register":{
+        "register":"নিবন্ধন",
+        "home":"বাড়ি",
+        "email":"ইমেল",
+        "name":"নাম",
+        "password":"পাসওয়ার্ড",
+        "register_validation":{
+            "name_required":"নাম প্রয়োজন।",
+            "email_already_taken":"ইমেলটি ইতিমধ্যে গ্রহণ করা হয়েছে."
+        }
+    },
+    "forgot_password":{
+        "forgot_password":"ফ্রগোট পাসওয়ার্ড",
+        "email":"ইমেল",
+        "home":"বাড়ি",
+        "send_email":"ইমেইল পাঠান",
+        "email_send_to":"ইমেল পাঠানো হয়েছে : {{user}}",
+        "forgot_password_validation":{
+            "email_not_found":"ইমেইল পাঠান এই ইমেলটি সহ ব্যবহারকারী খুঁজে পাওয়া যায় নি।"
+        }
+
+    },
+    "reset_password":{
+        "reset_password":"পাসওয়ার্ড রিসেট করুন",
+        "home":"বাড়ি",
+        "new_password":"নতুন পাসওয়ার্ড",
+        "confirm_passowrd":"পাসওয়ার্ড নিশ্চিত করুন",
+        "set_passowrd":"পাসওয়ার্ড সেট করুন",
+        "successfully_password":"পাসওয়ার্ড সফলভাবে আপডেট হয়েছে।",
+        "reset_password_validation":{
+            "password_match":"পাসওয়ার্ড মেলে না.",
+            "password_token":"পাসওয়ার্ড রিসেট টোকেন অবৈধ বা মেয়াদোত্তীর্ণ হয়ে গেছে।"
+        }
+    },
+    "profile":{
+        "profile":"প্রোফাইল",
+        "home":"বাড়ি",
+        "full_name":"পুরো নাম",
+        "email":"ইমেল",
+        "joined_on":"যোগদানের তারিখ",
+        "edit_profile":"পাসওয়ার্ড পরিবর্তন করুন",
+        "change_password":"জীবন বৃত্তান্ত সম্পাদনা"
+    },
+    "update_password":{
+        "update_password":"পাসওয়ার্ড আপডেট করুন",
+        "home":"বাড়ি",
+        "new_password":"নতুন পাসওয়ার্ড",
+        "old_password":"পুরানো পাসওয়ার্ড",
+        "successfully_password":"পাসওয়ার্ড সফলভাবে আপডেট হয়েছে।",
+        "update_password_validation":{
+            "old_password_incorrect":"পুরানো পাসওয়ার্ডটি ভুল।"
+        }
+    },
+    "update_profile":{
+        "update_profile":"প্রফাইল হালনাগাদ",
+        "name":"নাম",
+        "email":"বাড়ি",
+        "home":"ইমেল",
+        "successfully_user":"ব্যবহারকারী সফলভাবে আপডেট হয়েছে।",
+        "update_profile_validation":{
+            "name_required":"নাম প্রয়োজন।"
+        }
+    },
+    "search":{
+        "search":"অনুসন্ধান করুন"
+    },
+    "favorite":{
+        "favorite":"প্রিয়",
+        "home":"বাড়ি",
+        "image":"চিত্র",
+        "name":"নাম",
+        "price":"দাম",
+        "delete":"মুছে ফেলা",
+        "remove_favorite":"সফল পোস্ট পছন্দসই সরান।",
+        "add_favorite":"সফলভাবে প্রিয় পোস্ট যুক্ত করুন।",
+        "empty_favorite":"আপনার প্রিয় খালি।"
+    },
+    "reviews":{
+        "reviews_other":"অন্যান্য পর্যালোচনা"
+    },
+    "product_details":{
+        "brand":"ব্র্যান্ড",
+        "availability":"উপস্থিতি",
+        "home":"বাড়ি",
+        "products":"পণ্য",
+        "category":"বিভাগ",
+        "qty":"পরিমাণ",
+        "overview":"ওভারভিউ",
+        "reviews":"পর্যালোচনা",
+        "related_products":"সংশ্লিষ্ট পণ্য",
+        "post_login":"আপনার পর্যালোচনা পোস্ট করতে লগইন করুন।",
+        "submit_review":"আপনার পর্যালোচনা জমা দিন",
+        "submit_review_msg":"পর্যালোচনা সফলভাবে পোস্ট করা",
+        "submit":"জমা দিন"
+    },
+    "cart":{
+        "empty_cart":"তোমার থলে তো খালি",
+        "item_add_cart":"আইটেমটি কার্টে যুক্ত করা হয়েছে।",
+        "view_cart":"কার্ট দেখুন",
+        "sub_total":"উপ-মোট",
+        "home":"বাড়ি",
+        "shopping_cart":"বাজারের ব্যাগ",
+        "image":"চিত্র",
+        "name":"নাম",
+        "category":"বিভাগ",
+        "unit_price":"একক দাম",
+        "delete":"মুছে ফেলা",
+        "total":"মোট",
+        "quantity":"পরিমাণ",
+        "check_out":"চেক আউট"
+    },
+    "shopping":{
+        "home":"বাড়ি",
+        "shopping":"ঠিকানা তথ্য",
+        "address":"ঠিকানা",
+        "city":"শহর",
+        "phone":"ফোন নম্বর",
+        "post_code":"পোস্ট কোড",
+        "country":"দেশ"
+    },
+    "confirm_order":{
+        "home":"বাড়ি",
+        "confirm_order":"আদেশ নিশ্চিত করুন",
+        "address":"ঠিকানা",
+        "phone":"ফোন নম্বর",
+        "image":"চিত্র",
+        "name":"নাম",
+        "category":"বিভাগ",
+        "sub_total":"উপ-মোট",
+        "unit_price":"একক দাম",
+        "delete":"মুছে ফেলা",
+        "total":"মোট",
+        "quantity":"পরিমাণ",
+        "order_success":"অর্ডার সাফল্য",
+        "shopping":"কেনাকাটা",
+        "tax":"কর"
+    },
+    "card_info":{
+        "card_info":"কার্ড তথ্য",
+        "home":"বাড়ি",
+        "card":"কার্ড নম্বর",
+        "card_expiry":"কার্ডের সমাপ্তি",
+        "card_cvc":"কার্ড সিভিসি"
+    },
+    "order_success":{
+        "order_success_msg":"আপনার অর্ডার সফলভাবে স্থাপন করা হয়েছে।"
+    },
+    "logout":{
+        "logout_msg":"সফলভাবে লগ আউট হয়েছে।"
+    },
+    "brand":{
+        "brand_not_product":"পণ্য পাওয়া যায় নি :(",
+        "new_product":"নতুন পণ্য",
+        "best_selling_product":"সেরা বিক্রয় পণ্য"
+    },
+    "category":{
+        "category_not_product":"পণ্য পাওয়া যায় নি :("
+    }
+
+}

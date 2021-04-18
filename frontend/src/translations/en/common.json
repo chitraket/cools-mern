@@ -1,0 +1,194 @@
+{
+    "navbar": {
+        "home": "Home",
+        "login": "Login",
+        "register":"Register",
+        "dashboard":"Dashboard",
+        "favorite":"Favorite",
+        "order":"Orders",
+        "items":"Item's",
+        "profile":"Profile",
+        "logout":"Logout"
+        
+    },
+    "footer":{
+        "categories":"Categories"
+    },
+    "home":{
+        "brand":"Brands",
+        "new_product":"New Products",
+        "best_selling_product":"Best Selling Products"
+    },
+    "login":{
+        "login":"Login",
+        "home":"Home",
+        "email":"Email",
+        "password":"Password",
+        "forgot_password":"Forgot Password ?",
+        "login_validation":{
+            "email_required":"Email is required.",
+            "email_invaliad":"Email is invalid.",
+            "password_required":"Password is required.",
+            "password_invaliad":"Password is invalid.",
+            "password_characters":"Password must be 8 characters.",
+            "email_password_invalied":"Invalid Email or Password."
+        }
+    },
+    "register":{
+        "register":"Register",
+        "home":"Home",
+        "name":"Name",
+        "email":"Email",
+        "password":"Password",
+        "register_validation":{
+            "name_required":"Name is required.",
+            "email_already_taken":"Email has already been taken."
+        }
+    },
+    "forgot_password":{
+        "forgot_password":"Forgot Password",
+        "email":"Email",
+        "home":"Home",
+        "send_email":"Send Email",
+        "email_send_to":"Email sent to : {{user}}",
+        "forgot_password_validation":{
+            "email_not_found":"User not found with this email."
+        }
+    },
+    "reset_password":{
+        "reset_password":"Reset Password",
+        "home":"Home",
+        "new_password":"New Password",
+        "confirm_passowrd":"Confirm Password",
+        "set_passowrd":"Set Password",
+        "successfully_password":"Password updated successfully",
+        "reset_password_validation":{
+            "password_match":"Password does not match.",
+            "password_token":"Password reset token is invalid or has been expired."
+        }
+    },
+    "profile":{
+        "profile":"Profile",
+        "home":"Home",
+        "full_name":"Full Name",
+        "email":"Email Address",
+        "joined_on":"Joined On",
+        "edit_profile":"Edit Profile",
+        "change_password":"Change Password"
+    },
+    "update_password":{
+        "update_password":"Update Password",
+        "home":"Home",
+        "new_password":"New Password",
+        "old_password":"Old Password",
+        "successfully_password":"Password updated successfully",
+        "update_password_validation":{
+            "old_password_incorrect":"Old password is incorrect"
+        }
+    },
+    "update_profile":{
+        "update_profile":"Update Profile",
+        "name":"Name",
+        "email":"Email",
+        "home":"Home",
+        "successfully_user":"User updated successfully",
+        "update_profile_validation":{
+            "name_required":"Name is required."
+        }
+    },
+    "search":{
+        "search":"Search"
+    },
+    "favorite":{
+        "favorite":"Favorite",
+        "home":"Home",
+        "image":"Image",
+        "name":"Name",
+        "price":"Price",
+        "delete":"Delete",
+        "remove_favorite":"Remove favorite post successfully",
+        "add_favorite":"Add favorite post successfully",
+        "empty_favorite":"Your Favorite is Empty"
+    },
+    "reviews":{
+        "reviews_other":"Other's Reviews"
+    },
+    "product_details":{
+        "brand":"Brands",
+        "availability":"Availability",
+        "home":"Home",
+        "products":"Products",
+        "category":"Category",
+        "qty":"Qty",
+        "overview":"Overview",
+        "reviews":"Reviews",
+        "related_products":"Related Products",
+        "post_login":"Login to post your review",
+        "submit_review":"Submit your review",
+        "submit_review_msg":"Review posted successfully",
+        "submit":"Submit"
+    },
+    "cart":{
+        "empty_cart":"Your Cart is Empty",
+        "item_add_cart":"Item Added to Cart",
+        "view_cart":"View Cart",
+        "sub_total":"Sub-Total",
+        "home":"Home",
+        "shopping_cart":"Shopping Cart",
+        "image":"Image",
+        "name":"Name",
+        "category":"Category",
+        "unit_price":"Unit Price",
+        "delete":"Delete",
+        "total":"Total",
+        "quantity":"Quantity",
+        "check_out":"Check Out"
+    },
+    "shopping":{
+        "home":"Home",
+        "shopping":"Address Info",
+        "address":"Address",
+        "city":"City",
+        "phone":"Phone",
+        "post_code":"Post Code",
+        "country":"Country"
+    },
+    "confirm_order":{
+        "home":"Home",
+        "confirm_order":"Confirm Order",
+        "address":"Address",
+        "phone":"Phone",
+        "image":"Image",
+        "name":"Name",
+        "sub_total":"Sub-Total",
+        "category":"Category",
+        "unit_price":"Unit Price",
+        "delete":"Delete",
+        "total":"Total",
+        "quantity":"Quantity",
+        "order_success":"Order Success",
+        "shopping":"Shopping",
+        "tax":"Tax"
+    },
+    "card_info":{
+        "card_info":"Card Info",
+        "home":"Home",
+        "card":"Card Number",
+        "card_expiry":"Card Expiry",
+        "card_cvc":"Card CVC"
+    },
+    "order_success":{
+        "order_success_msg":"Your Order has been placed successfully."
+    },
+    "logout":{
+        "logout_msg":"Logged out successfully."
+    },
+    "brand":{
+        "brand_not_product":"Product not found :(",
+        "new_product":"New Products",
+        "best_selling_product":"Best Selling Products"
+    },
+    "category":{
+        "category_not_product":"Product not found :("
+    }
+}

@@ -1,0 +1,195 @@
+{
+    "navbar": {
+        "home": "घर",
+        "login": "लॉग इन",
+        "register":"रजिस्टर",
+        "dashboard":"डैशबोर्ड",
+        "favorite":"पसंदीदा",
+        "order":"ऑर्डर",
+        "items":"आइटम",
+        "profile":"प्रोफ़ाइल",
+        "logout":"लॉग आउट"
+    },
+    "footer":{
+        "categories":"श्रेणियाँ"
+    },
+    "home":{
+        "brand":"ब्रांड्स",
+        "new_product":"नये प्रोडक्ट्स",
+        "best_selling_product":"बेस्ट सेलिंग प्रोडक्ट्स"
+    },
+    "login":{
+        "login":"लॉग इन",
+        "home":"घर",
+        "email":"ईमेल",
+        "password":"पासवर्ड",
+        "forgot_password":"पासवर्ड भूल गए ?",
+        "login_validation":{
+            "email_required":"ईमेल जरुरी है।",
+            "email_invaliad":"ईमेल गलत है।",
+            "password_required":"पासवर्ड जरुरी है।",
+            "password_invaliad":"पासवर्ड गलत है।",
+            "password_characters":"पासवर्ड 8 वर्ण का होना चाहिए।",
+            "email_password_invalied":"अमान्य ईमेल या पासवर्ड।"
+        }
+    },
+    "register":{
+        "register":"रजिस्टर",
+        "home":"घर",
+        "email":"ईमेल",
+        "name":"नाम",
+        "password":"पासवर्ड",
+        "register_validation":{
+            "name_required":"नाम जरुरी है।",
+            "email_already_taken":"ईमेल पहले से ही लिया जा चुका है।"
+        }
+    },
+    "forgot_password":{
+        "forgot_password":"पासवर्ड भूल गए",
+        "email":"ईमेल",
+        "home":"घर",
+        "send_email":"ईमेल भेजें",
+        "email_send_to":"ईमेल को भेजा गया : {{user}}",
+         "forgot_password_validation":{
+            "email_not_found":"इस ईमेल के साथ उपयोगकर्ता नहीं मिला।"
+        }
+    },
+    "reset_password":{
+        "reset_password":"पासवर्ड रीसेट",
+        "home":"घर",
+        "new_password":"नया पासवर्ड",
+        "confirm_passowrd":"पासवर्ड की पुष्टि कीजिये",
+        "set_passowrd":"पासवर्ड सेट",
+        "successfully_password":"पासवर्ड सफलतापूर्वक अपडेट किया गया।",
+        "reset_password_validation":{
+            "password_match":"पासवर्ड मैच नहीं कर रहा है।",
+            "password_token":"पासवर्ड रीसेट टोकन अमान्य है या समाप्त हो गया है।"
+        }
+    },
+    "profile":{
+        "profile":"प्रोफ़ाइल",
+        "full_name":"पूरा नाम",
+        "home":"घर",
+        "email":"ईमेल",
+        "joined_on":"दिनांक शामिल हुई",
+        "edit_profile":"प्रोफ़ाइल संपादित",
+        "change_password":"पासवर्ड बदलें"
+    },
+    "update_password":{
+        "update_password":"पासवर्ड अपडेट",
+        "home":"घर",
+        "new_password":"नया पासवर्ड",
+        "old_password":"पुराना पासवर्ड",
+        "successfully_password":"पासवर्ड सफलतापूर्वक अपडेट किया गया।",
+        "update_password_validation":{
+            "old_password_incorrect":"पुराना पासवर्ड गलत है।"
+        }
+    },
+    "update_profile":{
+        "update_profile":"प्रोफ़ाइल अपडेट",
+        "name":"नाम",
+        "email":"ईमेल",
+        "home":"घर",
+        "successfully_user":"उपयोगकर्ता सफलतापूर्वक अपडेट किया गया।",
+        "update_profile_validation":{
+            "name_required":"नाम जरुरी है।"
+        }
+    },
+    "search":{
+        "search":"खोज"
+    },
+    "favorite":{
+        "favorite":"पसंदीदा",
+        "home":"घर",
+        "image":"छवि",
+        "name":"नाम",
+        "price":"कीमत",
+        "delete":"हटाना",
+        "remove_favorite":"पसंदीदा पोस्ट को सफलतापूर्वक निकालें।",
+        "add_favorite":"पसंदीदा पोस्ट सफलतापूर्वक जोड़ें।",
+        "empty_favorite":"आपका पसंदीदा खाली है।"
+    },
+    "reviews":{
+        "reviews_other":"अन्य की समीक्षा"
+    },
+    "product_details":{
+        "brand":"ब्रांड",
+        "availability":"उपलब्धता",
+        "home":"घर",
+        "products":"उत्पादों",
+        "category":"वर्ग",
+        "qty":"मात्रा",
+        "overview":"अवलोकन",
+        "reviews":"समीक्षा",
+        "related_products":"संबंधित उत्पाद",
+        "post_login":"अपनी समीक्षा पोस्ट करने के लिए लॉग इन करें।",
+        "submit_review":"अपनी समीक्षा सबमिट करें",
+        "submit_review_msg":"समीक्षा सफलतापूर्वक पोस्ट की गई",
+        "submit":"प्रस्तुत"
+    },
+    "cart":{
+        "empty_cart":"आपकी गाड़ी खाली है",
+        "item_add_cart":"आइटम कार्ट में जोड़ा गया।",
+        "view_cart":"टोकरी देखें",
+        "sub_total":"उप-कुल",
+        "home":"घर",
+        "shopping_cart":"शॉपिंग कार्ट",
+        "image":"छवि",
+        "name":"नाम",
+        "category":"वर्ग",
+        "unit_price":"यूनिट मूल्य",
+        "delete":"हटाएं",
+        "total":"संपूर्ण",
+        "quantity":"मात्रा",
+        "check_out":"चेक आउट"
+    },
+    "shopping":{
+        "home":"घर",
+        "shopping":"पता जानकारी",
+        "address":"पता",
+        "city":"शहर",
+        "phone":"फ़ोन नंबर",
+        "post_code":"पोस्ट कोड",
+        "country":"देश"
+    },
+    "confirm_order":{
+        "home":"घर",
+        "confirm_order":"आदेश की पुष्टि",
+        "address":"पता",
+        "phone":"फ़ोन नंबर",
+        "image":"छवि",
+        "name":"नाम",
+        "sub_total":"उप-कुल",
+        "category":"वर्ग",
+        "unit_price":"यूनिट मूल्य",
+        "delete":"हटाएं",
+        "total":"संपूर्ण",
+        "quantity":"मात्रा",
+        "order_success":"आदेश सफलता",
+        "shopping":"खरीदारी",
+        "tax":"कर"
+    },
+    "card_info":{
+        "card_info":"कार्ड की जानकारी",
+        "home":"घर",
+        "card":"कार्ड नंबर",
+        "card_expiry":"कार्ड की समाप्ति",
+        "card_cvc":"कार्ड सीवीसी"
+    },
+    "order_success":{
+        "order_success_msg":"आपका आदेश सफलतापूर्वक रखा गया है।"
+    },
+    "logout":{
+        "logout_msg":"सफलतापूर्वक लॉग आउट किया गया।"
+    },
+    "brand":{
+        "brand_not_product":"उत्पाद नहीं मिला :(",
+        "new_product":"नये प्रोडक्ट्स",
+        "best_selling_product":"बेस्ट सेलिंग प्रोडक्ट्स"
+    },
+    "category":{
+        "category_not_product":"उत्पाद नहीं मिला :("
+    }
+
+}
+

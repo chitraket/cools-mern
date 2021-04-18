@@ -1,0 +1,72 @@
+.rating-outer {
+    display: inline-block;
+    position: relative;
+    font-family: FontAwesome;
+    color: #808080;
+}
+.rating-outer::before{
+    content: '\f006 \f006 \f006 \f006 \f006';
+}
+.rating-inner{
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+}
+.rating-inner::before{
+    content: '\f005 \f005 \f005 \f005 \f005';
+    color: #F44336;
+}
+.stars {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding-left: 0;
+  }
+  
+  .star {
+    display: inline;
+    list-style: none;
+    font-size: 3rem;
+    padding-left: 0.9rem;
+    color: #e3e3e3;
+  }
+  
+  .star:first-child {
+    padding-left: 0;
+  }
+  
+  .orange {
+    color: #fa9c23;
+  }
+  
+  .yellow {
+    color: #F44336;
+  }
+  
+  .review_user {
+    font-size: 10px;
+    color: grey;
+  }
+.page-item.active .page-link {
+  background-color: #F44336;
+  border-color: #F44336;
+}
+
+.page-link {
+  color: #F44336;
+}
+.greenColor{
+  color: green;
+}
+.redColor{
+  color: red;
+}
+.page-link:hover {
+  color: #F44336;
+}
+.slider img{
+  height: 350px;
+}
