@@ -71,9 +71,11 @@ function App() {
       <Header/>
       <Route path = "/" component={Home} exact />
       <Route path = "/product/:id" component={ProductDetails} exact />
-      <Route path = "/product/category/:id" component={CategoryProduct} exact />
-      <Route path = "/product/brand/:id" component={BrandProduct} exact />
+      <Route path = "/category/:id" component={CategoryProduct} exact />
+      <Route path = "/brand/:id" component={BrandProduct} exact />
       <Route path = "/search/:keyword" component={ProductFilter} exact  />
+      <Route path = "/search/category/:cat" component={ProductFilter} exact  />
+      <Route path = "/search/brand/:brands" component={ProductFilter} exact  />
       <Route path = "/cart" component={Cart} exact />
       <ProtectedRoute path="/shipping" isUser={true} component={Shipping} exact/>
       <ProtectedRoute path="/confirm" isUser={true} component={ConfirmOrder} exact />

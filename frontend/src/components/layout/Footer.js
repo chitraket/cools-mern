@@ -50,7 +50,7 @@ const Footer = () => {
         <h6 className={`footer-title ptb_20 ${rt1}`}style={{paddingRight:(i18n.language  === 'pk' ? '20px' : '')}} > {t('footer.categories')}</h6>
         <ul>
         {category && category.map(categorys => (
-            <li key={categorys._id}> <Link to={`/product/category/${categorys._id}`}>{categorys.name}</Link></li>        
+            <li key={categorys._id}> <Link to={ categorys.type === 'store' ? `/category/${categorys._id}` : `/search/category/${categorys._id}`}>{categorys.name}</Link></li>        
           ))}
         </ul>
       </div>

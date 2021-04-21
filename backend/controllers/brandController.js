@@ -6,7 +6,7 @@ const cloudinary = require('cloudinary');
 
 exports.newBrand = catchAsyncErrors(async (req,res,next) => {
     
-    const { name , description } = req.body;
+    const { name , description, type } = req.body;
     const result = await cloudinary.v2.uploader.upload(req.body.images, {
         folder: 'brands',
     })
@@ -31,6 +31,7 @@ exports.newBrand = catchAsyncErrors(async (req,res,next) => {
     }
     const brand = await Brand.create({
         name,
+        type,
         slug:slugify(name),
         description,
         sliders:imagesLinks,
@@ -81,7 +82,8 @@ exports.updateBrand = catchAsyncErrors(async (req, res, next) => {
     const newUserData = {
         name: req.body.name,
         slug: slugify(req.body.name),
-        description: req.body.description
+        description: req.body.description,
+        type: req.body.type,
     }
 
 

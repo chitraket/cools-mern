@@ -5,7 +5,7 @@ const slugify=require('slugify');
 const cloudinary = require('cloudinary');
 
 exports.newCategory = catchAsyncErrors(async (req,res,next) => {
-     const { name } = req.body;
+     const { name,type } = req.body;
     
     const result = await cloudinary.v2.uploader.upload(req.body.images, {
         folder: 'categorys'
@@ -32,6 +32,7 @@ exports.newCategory = catchAsyncErrors(async (req,res,next) => {
     }
     const category = await Category.create({
         name,
+        type,
         slug:slugify(name),
         sliders:imagesLinks,
         images :  {
@@ -80,6 +81,7 @@ exports.updateCategory = catchAsyncErrors(async (req, res, next) => {
     }
     const newUserData = {
         name: req.body.name,
+        type: req.body.type,
         slug: slugify(req.body.name)
     }
 

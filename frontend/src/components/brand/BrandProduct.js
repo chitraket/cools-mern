@@ -82,7 +82,7 @@ const BrandProduct = ({match}) => {
                       <div className="item"><a href="/"><img key={bra.public_id} src={bra.url} alt={bra.name} className="img-responsive" /></a></div>
                     ))
                     :
-                    <React.Fragment></React.Fragment>
+                    ''
                 }
                 </Slider>
             </div>
@@ -91,7 +91,7 @@ const BrandProduct = ({match}) => {
                     <div className="col-sm-12">
                         <center className="mt_20">
                    <img src={brand.images && brand.images.url} alt={brand.name} className="img-responsive" style={{height:'100px',weight:'100px'}} />
-                    <p className="text-center mt_10">{brand.description}</p></center>
+                    <p className="text-center mt_10">{brand.description ? brand.description : ''}</p></center>
                     </div>
                 </div>
             </div>

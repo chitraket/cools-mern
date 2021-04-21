@@ -65,7 +65,7 @@ const ProductDetails = ({ match,history }) => {
       dispatch({ type: NEW_REVIEW_RESET })
     }
 
-  }, [dispatch, alert, error, reviewError, match.params.id,success,favoriteError,is_favorite,is_Delete,user])
+  }, [dispatch, alert, error, reviewError, match.params.id,success,favoriteError,is_favorite,is_Delete,user,t])
 
   const addToCart = () => {
     dispatch(addItemToCart(match.params.id, quantity));
@@ -179,11 +179,10 @@ const favoriteDeleteHandler = (e,id) => {
               <h1 style={{float:( i18n.language  === 'pk' ? 'right' : '')}}>{product.name}</h1>
               <ul style={{float:( i18n.language  === 'pk' ? 'left' : '')}}>
                 <li><Link to="/">{t('product_details.home')}</Link></li>
-                <li><a href="category_page.html">{t('product_details.products')}</a></li>
+                <li><Link to={product.category && product.category.type === 'store' ? `/category/${product.category && product.category._id}` : `/search/category/${product.category && product.category._id}`}> {product.category && product.category.name}</Link></li>
                 <li className="active">{product.name}</li>
               </ul>
             </div>
-            {/* =====  BREADCRUMB END===== */}
             <div className="row mt_10 ">
               <div className="col-md-6">
                 <div>
@@ -195,7 +194,7 @@ const favoriteDeleteHandler = (e,id) => {
                 </div>
               </div>
               <div className={`col-md-6 prodetail caption product-thumb ${rt1}`}>
-                <h4 data-name="product_name" className="product-name"><a href="/" title="Casual Shirt With Ruffle Hem">{product.name}</a></h4>
+                <h4 data-name="product_name" className="product-name"><Link to={`/product/${product._id}`} title={product.name}>{product.name}</Link></h4>
                 <div className="rating">
                         <div className="rating-outer">
                                 <div className="rating-inner" style={{ width: `${(product.ratings / 5) * 100}%` }}></div>
@@ -214,10 +213,10 @@ const favoriteDeleteHandler = (e,id) => {
                     <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? ' In Stock' : ' Out of Stock'}</span></li>
                   <li>
                     <label>{t('product_details.category')} : </label>
-                    <Link to={`/product/category/${product.category && product.category._id}`}> {product.category && product.category.name}</Link></li>
+                    <Link to={product.category && product.category.type === 'store' ? `/category/${product.category && product.category._id}` : `/search/category/${product.category && product.category._id}`}> {product.category && product.category.name}</Link></li>
                     <li>
                     <label>{t('product_details.brand')} : </label>
-                    <span>  {product.brand && product.brand.name}</span></li>
+                    <Link to={product.brand && product.brand.type === 'store' ? `/brand/${product.brand &&  product.brand._id}` : `/search/brand/${product.brand && product.brand._id}`}> {product.brand && product.brand.name} </Link></li>
                 </ul>
                 <hr />
                 <p className="product-desc mtb_30"> {product.description}</p>

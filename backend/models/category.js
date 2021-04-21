@@ -33,6 +33,10 @@ const categorySchema = new mongoose.Schema({
             }
         }
     ],
+    type:{
+        type:String,
+        default:'store'
+    },
     status:{
         type: String,
         default: 'false'

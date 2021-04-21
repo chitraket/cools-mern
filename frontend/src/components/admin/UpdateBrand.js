@@ -10,6 +10,7 @@ import Sidebar from './Sidebar'
 
 const UpdateBrand = ({ history , match}) => {
     const [name,setName]=useState('')
+    const [type,settype]=useState('')
     const [oldImages,setOldImages]=useState([])
     const [images,setImages]=useState([])
     const [imagesPreview,setImagesPreview]=useState([])
@@ -30,6 +31,7 @@ const UpdateBrand = ({ history , match}) => {
            setOldImages(brand.images.url);
            setOldSliderImages(brand.sliders);
            setDescription(brand.description);
+           settype(brand.type);
         }
         if(error){
             alert.error(error) 
@@ -52,6 +54,7 @@ const UpdateBrand = ({ history , match}) => {
          formData.set('name',name);
          formData.set('images',images)
          formData.set('description',description)
+         formData.set('type',type)
          sliderImages.forEach(image =>{
           formData.append('sliders',image)
         })
@@ -116,6 +119,17 @@ const onChange = e => {
                     <div className="form-group">
                     <input type="text" id="name_field" className="form-control"  placeholder="Name"  value={name} onChange={(e) => setName(e.target.value)}/>
                     </div>
+                    <div className="form-group">
+                    <select
+                                            className="form-control"
+                                            name='type'
+                                            value={type}
+                                            onChange={(e) => settype(e.target.value)} >
+                                               <option value="" disabled> Select Page Type</option>
+                                                <option value="store">Store</option>
+                                                <option value="product">Product</option>
+                                        </select>
+                                        </div>
                     <div className="form-group">
                         <textarea className="form-control" id="description_field" rows={8} placeholder="Description" value={description} onChange={(e)=> setDescription(e.target.value)}></textarea>
                     </div>

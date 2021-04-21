@@ -10,6 +10,7 @@ import Sidebar from './Sidebar'
 
 const UpdateCategory = ({ history , match}) => {
     const [name,setName]=useState('')
+    const [type,settype]=useState('')
     const [oldImages,setOldImages]=useState([])
     const [images,setImages]=useState([])
     const [imagesPreview,setImagesPreview]=useState([])
@@ -28,6 +29,7 @@ const UpdateCategory = ({ history , match}) => {
            setName(category.name);
            setOldImages(category.images.url);
            setOldSliderImages(category.sliders);
+           settype(category.type);
         }
         if(error){
             alert.error(error) 
@@ -49,6 +51,7 @@ const UpdateCategory = ({ history , match}) => {
         const formData =  new FormData();
          formData.set('name',name);
          formData.set('images',images)
+         formData.set('type',type)
          sliderImages.forEach(image =>{
           formData.append('sliders',image)
         })
@@ -112,6 +115,17 @@ const onChange = e => {
                     <div className="form-group">
                     <input type="text" id="name_field" className="form-control"  placeholder="Name"  value={name} onChange={(e) => setName(e.target.value)}/>
                     </div>
+                    <div className="form-group">
+                    <select
+                                            className="form-control"
+                                            name='type'
+                                            value={type}
+                                            onChange={(e) => settype(e.target.value)} >
+                                               <option value="" disabled> Select Page Type</option>
+                                                <option value="store">Store</option>
+                                                <option value="product">Product</option>
+                                        </select>
+                                        </div>
                     <div className='form-group'>
                             <div className='d-flex align-items-center'>
                             <input

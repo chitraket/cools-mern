@@ -1,6 +1,9 @@
 {
     "navbar": {
         "home": "घर",
+        "glasses":"चश्मा",
+        "categories":"श्रेणियाँ",
+        "brand":"ब्रांड्स",
         "login": "लॉग इन",
         "register":"रजिस्टर",
         "dashboard":"डैशबोर्ड",
@@ -189,6 +192,13 @@
     },
     "category":{
         "category_not_product":"उत्पाद नहीं मिला :("
+    },
+    "product_filter":{
+        "price_range":"मूल्य सीमा",
+        "rating":"रेटिंग",
+        "category":"श्रेणियाँ",
+        "brand":"ब्रांड्स",
+        "product_not_found":"उत्पाद नहीं मिला :("
     }
 
 }

@@ -7,39 +7,53 @@ import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../actions/userActions'
 import { addItemToCart, removeItemFromCart } from '../../actions/cartActions'
 import { useTranslation } from "react-i18next";
+import { getCategory } from '../../actions/categoryActions'
+import { clearErrors, getBrand } from '../../actions/brandActions'
 
 const Header = () => {
+  const alert = useAlert();
+  const disptach = useDispatch();
   const [t, i18n] = useTranslation('common');
   const rt1 = ( i18n.language === 'pk' ? 'text-right' : '' )
   const [value, setValue] = React.useState(i18n.language);
-  const alert = useAlert();
-  const dispatch = useDispatch();
   const { isAuthenticated,user, loading } = useSelector(state => state.auth)
+  const {  category,error:categroyError } = useSelector(state => state.category)
+  const { brand,error:brandError} = useSelector(state => state.brand)
   const { cartItems } = useSelector(state => state.cart)
   React.useEffect(() => {
     localStorage.setItem('language', value);
-  }, [value]);
+    disptach(getCategory());
+    disptach(getBrand());
+    if(categroyError){
+      alert.error(categroyError)
+      disptach(clearErrors())
+      }
+     if(brandError){
+        alert.error(brandError)
+        disptach(clearErrors())
+     }
+  }, [disptach,value,categroyError,brandError,alert]);
 
   const onChange = event => {
     setValue(event.target.value)
     i18n.changeLanguage(event.target.value)
   }
   const removeCartItemHandler = (id) => {
-    dispatch(removeItemFromCart(id))
+    disptach(removeItemFromCart(id))
   }
 
   const increaseQty = (id, quantity, stock) => {
     const newQty = quantity + 1;
     if (newQty > stock) return;
-    dispatch(addItemToCart(id, newQty))
+    disptach(addItemToCart(id, newQty))
   }
   const decreaseQty = (id, quantity) => {
     const newQty = quantity - 1;
     if (newQty <= 0) return;
-    dispatch(addItemToCart(id, newQty))
+    disptach(addItemToCart(id, newQty))
   }
   const logoutHandler = () => {
-    dispatch(logout())
+    disptach(logout())
     alert.success(t('logout.logout_msg'))
   }
   return (
@@ -74,7 +88,7 @@ const Header = () => {
                         <li className="account"><Link to={'/dashboard'}>{t('navbar.dashboard')}</Link></li>
                       )}
                       <li className="sitemap"><Link to="/me">{t('navbar.profile')}</Link></li>
-                      <li className="account"><Link to="/" onClick={logoutHandler}> {t('navbar.logout')}</Link></li>
+                      <li className="account"><Link to="/" onClick={logoutHandler}>{t('navbar.logout')}</Link></li>
                     </React.Fragment>
                   ) : !loading && <React.Fragment><li className="account"><Link to={'/login'}>{t('navbar.login')}</Link></li><li className="account"><Link to={'/register'}>{t('navbar.register')}</Link></li></React.Fragment>}
                 </ul>
@@ -159,6 +173,43 @@ const Header = () => {
               <div className="collapse navbar-collapse js-navbar-collapse pull-right">
                 <ul id="menu" className={`nav navbar-nav ${rt1}`}>
                   <li><NavLink to={'/'}>{t('navbar.home')}</NavLink></li> 
+                  <li className="dropdown mega-dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown">{t('navbar.glasses')}</a>
+                    <ul className="dropdown-menu mega-dropdown-menu row">
+                      <li className="col-md-3">
+                        <ul>
+                          <li className="dropdown-header">{t('navbar.categories')}</li>
+                          {category && category.map(categorys => (
+                            <li key={categorys._id}><Link to={ categorys.type === 'store' ? `/category/${categorys._id}` : `/search/category/${categorys._id}`}> {categorys.name}</Link></li>
+                          ))}
+                        </ul>
+                      </li>
+    <li className="col-md-3">
+      <ul>
+        <li className="dropdown-header">{t('navbar.brand')}</li>
+        {brand && brand.map(brands => (
+            <li  key={brands._id} key={brands._id}><Link to={ brands.type === 'store' ? `/brand/${brands._id}` : `/search/brand/${brands._id}`}>{brands.name}</Link></li>
+        ))}
+      </ul>
+    </li>
+    {/* <li className="col-md-3">
+      <ul>
+        <li id="myCarousel" className="carousel slide" data-ride="carousel">
+          <div className="carousel-inner">
+            <div className="item active"> <a href="#"><img src="images/menu-banner1.jpg" className="img-responsive" alt="Banner1" /></a></div>
+           
+            <div className="item"> <a href="#"><img src="images/menu-banner2.jpg" className="img-responsive" alt="Banner1" /></a></div>
+          
+            <div className="item"> <a href="#"><img src="images/menu-banner3.jpg" className="img-responsive" alt="Banner1" /></a></div>
+            
+          </div>
+         
+        </li>
+     
+      </ul>
+    </li> */}
+  </ul>
+</li>
+
                 </ul>
               </div>
               {/* /.nav-collapse */}

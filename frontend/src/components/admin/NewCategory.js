@@ -8,6 +8,7 @@ import { NEW_CATEGORY_RESET } from '../../constants/categoryConstants'
 import Sidebar from './Sidebar'
 const NewCategory = ({ history }) => {
     const [name, setName] = useState('')
+    const [type,settype]=useState('')
     const [images, setImages] = useState([])
     const [imagesPreview, setImagesPreview] = useState([])
     const [sliderimages, setSliderImages] = useState([])
@@ -30,6 +31,7 @@ const NewCategory = ({ history }) => {
         e.preventDefault();
         const formData = new FormData();
         formData.set('name', name);
+        formData.set('type',type);
         formData.append('images', images)
         sliderimages.forEach(slider =>{
             formData.append('sliders',slider)
@@ -86,6 +88,13 @@ const NewCategory = ({ history }) => {
                                                 <div className="form-group">
                                                     <input type="text" id="name_field" className="form-control" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                                                 </div>
+                                                <div className="form-group"> 
+                                                    <select className="form-control" id="category_field" value={type}  onChange={(e) => settype(e.target.value)}>
+                                                                        <option value="" disabled> Select Page Type</option>
+                                                                        <option value="store">Store</option>
+                                                                        <option value="product">Product</option>
+                                                                    </select>
+                                                    </div>
                                                 <div className='form-group'>
                                                     <div className='d-flex align-items-center'>
                                                         <input

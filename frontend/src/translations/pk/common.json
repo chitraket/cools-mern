@@ -1,6 +1,9 @@
 {
     "navbar": {
         "home": "گھر",
+        "glasses":"شیشے",
+        "categories":"اقسام",
+        "brand":"برانڈز",
         "login": "لاگ ان کریں",
         "register":"رجسٹر کریں",
         "dashboard":"ڈیش بورڈ",
@@ -190,6 +193,13 @@
     },
     "category":{
         "category_not_product":"مصنوعہ نہیں ملا :("
+    },
+    "product_filter":{
+        "price_range":"قیمت کی حد",
+        "rating":"درجہ بندی",
+        "category":"زمرہ جات",
+        "brand":"برانڈز",
+        "product_not_found":"مصنوعہ نہیں ملا :("
     }
 
 }

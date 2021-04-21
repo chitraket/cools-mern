@@ -8,6 +8,7 @@ import { NEW_BRAND_RESET } from '../../constants/brandConstants'
 import Sidebar from './Sidebar'
 const NewBrand = ({ history }) => {
     const [name, setName] = useState('')
+    const [type,settype]=useState('')
     const [images, setImages] = useState([])
     const [imagesPreview, setImagesPreview] = useState([])
     const [description,setDescription] = useState('')
@@ -31,6 +32,7 @@ const NewBrand = ({ history }) => {
         e.preventDefault();
         const formData = new FormData();
         formData.set('name', name);
+        formData.set('type',type);
         formData.set('description',description)
         formData.append('images', images)
         sliderimages.forEach(slider =>{
@@ -88,6 +90,13 @@ const NewBrand = ({ history }) => {
                                                 <div className="form-group">
                                                     <input type="text" id="name_field" className="form-control" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
                                                 </div>
+                                                <div className="form-group"> 
+                                                    <select className="form-control" id="category_field" value={type}  onChange={(e) => settype(e.target.value)}>
+                                                                        <option value="" disabled> Select Page Type</option>
+                                                                        <option value="store">Store</option>
+                                                                        <option value="product">Product</option>
+                                                                    </select>
+                                                    </div>
                                                 <div className="form-group">
                                                     <textarea className="form-control" id="description_field" rows={8} placeholder="Description" value={description} onChange={(e)=> setDescription(e.target.value)}></textarea>
                                                 </div>

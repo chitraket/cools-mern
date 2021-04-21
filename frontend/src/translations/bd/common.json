@@ -1,6 +1,9 @@
 {
     "navbar": {
         "home": "বাড়ি",
+        "glasses":"চশমা",
+        "categories":"বিভাগ",
+        "brand":"ব্র্যান্ডগুলি",
         "login": "প্রবেশ করুন",
         "register":"নিবন্ধন",
         "dashboard":"ড্যাশবোর্ড",
@@ -190,6 +193,13 @@
     },
     "category":{
         "category_not_product":"পণ্য পাওয়া যায় নি :("
+    },
+    "product_filter":{
+        "price_range":"মূল্য পরিসীমা",
+        "rating":"রেটিং",
+        "category":"শ্রেণিবদ্ধ",
+        "brand":"ব্র্যান্ড",
+        "product_not_found":"পণ্য পাওয়া যায় নি :("
     }
 
 }

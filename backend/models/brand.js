@@ -38,6 +38,9 @@ const brandSchema = new mongoose.Schema({
             }
         }
     ],
+    type:{
+        type:String,
+    },
     status:{
         type: String,
         default: 'false'

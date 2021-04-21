@@ -23,11 +23,12 @@ function ProductFilter({ match }) {
     const alert = useAlert();
     const [currentPage,setCurrentPage] = useState(1);
     const [price,setPrice] = useState([1,10000]);
-    const [cat,setCat] = useState('')
-    const [brands,setBrands] = useState('')
+    const [cat,setCat] = useState(match.params.cat ? match.params.cat : '') 
+    const [brands,setBrands] = useState(match.params.brands ? match.params.brands : '')
     const [rating,setRating]= useState(0)
     const [t, i18n] = useTranslation('common');
     const rt1 = ( i18n.language === 'pk' ? 'text-right' : '' )
+    const rtc1 = ( i18n.language === 'pk' ? 'text-right' : 'text-center' )
 
     const disptach = useDispatch();
     const {  category,error:categroyError } = useSelector(state => state.category)
@@ -102,9 +103,9 @@ function ProductFilter({ match }) {
   <div className="row ">
     <div id="column-left" className="col-sm-4 col-md-4 col-lg-3 ">
       <div className="filter left-sidebar-widget mb_50">
-        <div className="filter-block mt_20">
+        <div className={`filter-block mt_20 ${rt1}`}>
           <p>
-            <label htmlFor="amount">Price Range</label>
+            <label htmlFor="amount"> {t('product_filter.price_range')}</label>
             <div className="mt_30"/>
            <Range 
               marks={{
@@ -128,7 +129,7 @@ function ProductFilter({ match }) {
           <div className="list-group">
 
             <div className="list-group-item mb_10">
-              <label>Rating</label>
+              <label>{t('product_filter.rating')}</label>
               <div id="filter-group1">
                 <div className="checkbox">
                   <label>
@@ -155,7 +156,7 @@ function ProductFilter({ match }) {
               </div>
             </div>
             <div className="list-group-item mb_10">
-              <label>Category</label>
+              <label>{t('product_filter.category')}</label>
               <div id="filter-group1">
                 <div className="checkbox">
                   <label>
@@ -178,7 +179,7 @@ function ProductFilter({ match }) {
               </div>
             </div>
             <div className="list-group-item mb_10">
-              <label>Brand</label>
+              <label>{t('product_filter.brand')}</label>
               <div id="filter-group1">
                 <div className="checkbox">
                   <label>
@@ -474,13 +475,13 @@ function ProductFilter({ match }) {
     </div>
     <div className="col-sm-8 col-md-8 col-lg-9 mtb_30">
       {/* =====  BANNER STRAT  ===== */}
-      <div className="breadcrumb ptb_20">
+      {/* <div className="breadcrumb ptb_20">
         <h1>Products</h1>
         <ul>
           <li><Link to={"/"}>Home</Link></li>
           <li className="active">Products</li>
         </ul>
-      </div>
+      </div> */}
       {/* =====  BREADCRUMB END===== */}
       {/* <div className="category-page-wrapper mb_30">
         <div className="col-xs-6 sort-wrapper">
@@ -524,9 +525,9 @@ function ProductFilter({ match }) {
             <Product key={product._id} product={product} item={"product-layout  product-grid  col-lg-3 col-md-4 col-xs-6"} col={"mb_30"} addtocart={() => addToCart(product._id,1)} user={user} isAuthenticated={isAuthenticated} favoriteHandler={(e) =>  favoriteHandler(e,product._id)}  favoriteDeleteHandler={(e) => favoriteDeleteHandler(e,product._id)}/>
       ))}
       </div>
-       : <p className="mt_90 text-center">Product not found :(</p> }
+       : <p className="mt_90 text-center">{t('product_filter.product_not_found')}</p> }
       {resPerPage <= count && (
-           <div className="text-center mt_50">
+           <div className={`${rtc1} mt_50`}>
                <Pagination
                                 activePage={currentPage}
                                 itemsCountPerPage={resPerPage}

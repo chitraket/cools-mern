@@ -100,7 +100,7 @@ function Home() {
                   <div className="col-sm-12">
                   <Slider {...settings}>
                   {category && category.map(categorys => (
-                        <div className="item text-center" key={categorys._id}> <Link to={`/product/category/${categorys._id}`}> <img src={categorys.images.url} alt={categorys.name} className="img-responsive" /> </Link> </div>
+                        <div className="item text-center" key={categorys._id}> <Link to={ categorys.type === 'store' ? `/category/${categorys._id}` : `/search/category/${categorys._id}`}> <img src={categorys.images.url} alt={categorys.name} className="img-responsive" /> </Link> </div>
                     ))}
                     </Slider>
                   </div>
@@ -125,7 +125,7 @@ function Home() {
                     ref={carousel}
                   >
                   {brand && brand.map(brands => (
-                        <div className="item text-center" key={brands._id}> <Link to={`/product/brand/${brands._id}`}>  <img src={brands.images.url} alt={brands.name} className="img-responsive" /> </Link> </div>
+                        <div className="item text-center" key={brands._id}> <Link to={ brands.type === 'store' ? `/brand/${brands._id}` : `/search/brand/${brands._id}`}>  <img src={brands.images.url} alt={brands.name} className="img-responsive" /> </Link> </div>
                     ))}
                     </Slider>
                     </div>

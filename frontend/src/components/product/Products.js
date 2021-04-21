@@ -34,7 +34,6 @@ const Product = ({ product,col,item ,addtocart,user,isAuthenticated,favoriteHand
                                     : ''
                         }
                             <Link to={`/product/${product._id}`}> <div className="quickview"><span>Quick View</span></div></Link>
-                            {/* <div className="compare"><a href="/"><span>Compare</span></a></div> */}
                             {  product.stock === 0 ? <div className="add-to-cart"><span>Add to cart</span></div> : <div className="add-to-cart" onClick={addtocart}><span >Add to cart</span></div> }
                         </div>
                     </div>
