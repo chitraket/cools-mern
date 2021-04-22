@@ -71,13 +71,13 @@ const ListOrders = () => {
                     : <p style={{ color: 'red' }}>{order.orderStatus}</p>,
                 actions: <React.Fragment>
                 <Link to={`/order/${order._id}`}  className="btn"><i className="fa fa-eye"></i></Link>
-                {showDownloadLink(order)}
+                {order.orderStatus && String(order.orderStatus).includes('Delivered') ? showDownloadLink(order) : ''}
                 </React.Fragment>
             })
         })
         return data
     }
-    return (
+    return ( 
         <React.Fragment>
             <div className="container">
                 <div className="row ">

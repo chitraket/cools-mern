@@ -7,8 +7,22 @@ const cloudinary = require('cloudinary');
 exports.newBrand = catchAsyncErrors(async (req,res,next) => {
     
     const { name , description, type } = req.body;
+    if(!req.body.name){
+        return next(new ErrorHandler('Name is required.',400))
+    }
+    if(!description){
+        return next(new ErrorHandler('Descripition is required.',400))
+    }
     const result = await cloudinary.v2.uploader.upload(req.body.images, {
         folder: 'brands',
+        allowedFormats: ['jpg', 'jpeg', 'png'],
+        width: 215,
+        height:140,
+        crop: "scale"
+    },(err) => {
+        if(err){
+            return next(new ErrorHandler(err.message, err.http_code));
+        }
     })
     let images = []
     if (typeof req.body.sliders === 'string') {
@@ -21,7 +35,12 @@ exports.newBrand = catchAsyncErrors(async (req,res,next) => {
 
     for (let i = 0; i < images.length; i++) { 
         const results = await cloudinary.v2.uploader.upload(images[i], {
-            folder: 'sliders'
+            folder: 'sliders',
+            allowedFormats: ['jpg', 'jpeg', 'png'],
+        },(err) => {
+            if(err){
+                return next(new ErrorHandler(err.message, err.http_code));
+            }
         });
 
         imagesLinks.push({
@@ -79,6 +98,12 @@ exports.updateBrand = catchAsyncErrors(async (req, res, next) => {
     if (!brand) {
         return next(new ErrorHandler('Brand not found', 404));
     }
+    if(!req.body.name){
+        return next(new ErrorHandler('Name is required.',400))
+    }
+    if(!req.body.description){
+        return next(new ErrorHandler('Descripition is required.',400))
+    }
     const newUserData = {
         name: req.body.name,
         slug: slugify(req.body.name),
@@ -88,11 +113,19 @@ exports.updateBrand = catchAsyncErrors(async (req, res, next) => {
 
 
     if (req.body.images !== '') {
-        const image_id = category.images.public_id;
+        const image_id = brand.images.public_id;
         const res = await cloudinary.v2.uploader.destroy(image_id);
 
         const result = await cloudinary.v2.uploader.upload(req.body.images, {
             folder: 'brands',
+            allowedFormats: ['jpg', 'jpeg', 'png'],
+            width: 215,
+            height:140,
+            crop: "scale"
+        },(err) => {
+            if(err){
+                return next(new ErrorHandler(err.message, err.http_code));
+            }
         })
 
         newUserData.images = {
@@ -114,7 +147,12 @@ exports.updateBrand = catchAsyncErrors(async (req, res, next) => {
         let imagesLinks = [];
         for (let i = 0; i < images.length; i++) {
             const result = await cloudinary.v2.uploader.upload(images[i], {
-                folder: 'sliders'
+                folder: 'sliders',
+                allowedFormats: ['jpg', 'jpeg', 'png'],
+            },(err) => {
+                if(err){
+                    return next(new ErrorHandler(err.message, err.http_code));
+                }
             });
 
             imagesLinks.push({

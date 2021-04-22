@@ -6,9 +6,19 @@ const cloudinary = require('cloudinary');
 
 exports.newCategory = catchAsyncErrors(async (req,res,next) => {
      const { name,type } = req.body;
-    
+     if(!req.body.name){
+        return next(new ErrorHandler('Name is required.',400))
+    }
     const result = await cloudinary.v2.uploader.upload(req.body.images, {
-        folder: 'categorys'
+        folder: 'categorys',
+        width: 215,
+        height:140,
+        crop: "scale",
+        allowedFormats: ['jpg', 'jpeg', 'png'],
+    },(err) => {
+        if(err){
+            return next(new ErrorHandler(err.message, err.http_code));
+        }
     })
 
     let images = []
@@ -22,7 +32,12 @@ exports.newCategory = catchAsyncErrors(async (req,res,next) => {
 
     for (let i = 0; i < images.length; i++) { 
         const results = await cloudinary.v2.uploader.upload(images[i], {
-            folder: 'sliders'
+            folder: 'sliders',
+            allowedFormats: ['jpg', 'jpeg', 'png'],
+        },(err) => {
+            if(err){
+                return next(new ErrorHandler(err.message, err.http_code));
+            }
         });
 
         imagesLinks.push({
@@ -79,6 +94,9 @@ exports.updateCategory = catchAsyncErrors(async (req, res, next) => {
     if (!category) {
         return next(new ErrorHandler('Category not found', 404));
     }
+    if(!req.body.name){
+        return next(new ErrorHandler('Name is required.',400))
+    }
     const newUserData = {
         name: req.body.name,
         type: req.body.type,
@@ -91,7 +109,15 @@ exports.updateCategory = catchAsyncErrors(async (req, res, next) => {
         const res = await cloudinary.v2.uploader.destroy(image_id);
 
         const result = await cloudinary.v2.uploader.upload(req.body.images, {
-            folder: 'categorys'
+            folder: 'categorys',
+            width: 215,
+            height:140,
+            crop: "scale",
+            allowedFormats: ['jpg', 'jpeg', 'png'],
+        },(err) => {
+            if(err){
+                return next(new ErrorHandler(err.message, err.http_code));
+            }
         })
 
         newUserData.images = {
@@ -113,7 +139,12 @@ exports.updateCategory = catchAsyncErrors(async (req, res, next) => {
         let imagesLinks = [];
         for (let i = 0; i < images.length; i++) {
             const result = await cloudinary.v2.uploader.upload(images[i], {
-                folder: 'sliders'
+                folder: 'sliders',
+                allowedFormats: ['jpg', 'jpeg', 'png'],
+            },(err) => {
+                if(err){
+                    return next(new ErrorHandler(err.message, err.http_code));
+                }
             });
 
             imagesLinks.push({

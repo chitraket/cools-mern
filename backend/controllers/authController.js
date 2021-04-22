@@ -27,10 +27,18 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     if(users){
         return next(new ErrorHandler('register.register_validation.email_already_taken',400))
     }
+    if(!req.body.avatar){
+        return next(new ErrorHandler('register.register_validation.image_required',400))
+    }
     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
         folder: 'avatars',
         width: 150,
-        crop: "scale"
+        crop: "scale",
+        allowedFormats: ['jpg', 'jpeg', 'png'],
+    },(err) => {
+        if(err){
+            return next(new ErrorHandler('register.register_validation.file_type_not', err.http_code));
+        }
     })
     const user = await User.create({
         name,
@@ -136,8 +144,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
         resetPasswordExpire: { $gt: Date.now() }
     })
 
-    if (!user) {
-        
+    if (!user) {  
         return next(new ErrorHandler('reset_password.reset_password_validation.password_token', 400))
     }
 
@@ -212,7 +219,12 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
         const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
             folder: 'avatars',
             width: 150,
-            crop: "scale"
+            crop: "scale",
+            allowedFormats: ['jpg', 'jpeg', 'png'],
+        },(err) => {
+            if(err){
+                return next(new ErrorHandler('register.register_validation.file_type_not', err.http_code));
+            }
         })
 
         newUserData.avatar = {

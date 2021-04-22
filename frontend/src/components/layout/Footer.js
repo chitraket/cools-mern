@@ -7,6 +7,7 @@ import { clearErrors, getCategory } from '../../actions/categoryActions';
 const Footer = () => {
   const [t, i18n] = useTranslation('common');
   const rt1 = ( i18n.language === 'pk' ? 'text-right' : '' )
+  const rtmc1 = ( i18n.language === 'pk' ? 'pull-right' : 'pull-left' )
   const alert = useAlert();
   const disptach = useDispatch();
   const {  category,error:categroyError } = useSelector(state => state.category)
@@ -22,13 +23,13 @@ const Footer = () => {
 
     return (
         <React.Fragment>
-            <div className="footer pt_60">
+            <div className={`footer pt_60 ${rt1}`}>
   <div className="container">
     <div className="row">
-      <div className="col-md-3 footer-block">
+      <div className={`col-md-3 footer-block ${rtmc1}`}>
         <div className="content_footercms_right">
-          <div className="footer-contact">
-            <div className="footer-logo mt_20 mb_40"> <a href="index-2.html"> <img src="images/footer-logo.png" alt="Cools" /> </a> </div>
+          <div className={`footer-contact`}>
+            <div className="footer-logo mt_20 mb_40"> <Link to={'/'}> <img src="images/footer-logo.png" alt="Cools" /> </Link> </div>
             <ul>
               <li>B-14 Collins Street West Victoria 2386</li>
               <li>(+123) 456 789 - (+024) 666 888</li>
@@ -46,7 +47,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="col-md-2 footer-block">
+      <div className={`col-md-2 footer-block ${rtmc1}`}>
         <h6 className={`footer-title ptb_20 ${rt1}`}style={{paddingRight:(i18n.language  === 'pk' ? '20px' : '')}} > {t('footer.categories')}</h6>
         <ul>
         {category && category.map(categorys => (
@@ -65,7 +66,7 @@ const Footer = () => {
           <li><a href="!#">About Us</a></li>
         </ul>
       </div> */}
-      <div className="col-md-3">
+      <div className={`col-md-3 ${rtmc1}`}>
         <h6 className="ptb_20">SIGN UP OUR NEWSLETTER</h6>
         <p className="mt_10 mb_20">For get offers from our favorite brands &amp; get 20% off for next </p>
         <div className="form-group">

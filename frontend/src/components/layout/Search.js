@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
 
-const Search = ({ history }) => {
+const Search = ({ history  , rtmc2}) => {
     const [keyword, setKeyword] = useState('');
     const [t, i18n] = useTranslation('common');
     const rt1 = ( i18n.language === 'pk' ? 'text-right' : '' )
@@ -16,7 +16,7 @@ const Search = ({ history }) => {
         }
     }
     return (
-        <div className="main-search pull-right">
+        <div className={`main-search ${rtmc2}`}>
             <div className="search-overlay">
                 <Link to={window.location.pathname} className="search-overlay-close" />
                 <div className="container">

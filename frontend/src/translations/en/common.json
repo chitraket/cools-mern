@@ -45,7 +45,9 @@
         "password":"Password",
         "register_validation":{
             "name_required":"Name is required.",
-            "email_already_taken":"Email has already been taken."
+            "email_already_taken":"Email has already been taken.",
+            "image_required":"Image is required",
+            "file_type_not":"File type not supported"
         }
     },
     "forgot_password":{

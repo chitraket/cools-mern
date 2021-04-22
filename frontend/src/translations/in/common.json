@@ -44,7 +44,9 @@
         "password":"पासवर्ड",
         "register_validation":{
             "name_required":"नाम जरुरी है।",
-            "email_already_taken":"ईमेल पहले से ही लिया जा चुका है।"
+            "email_already_taken":"ईमेल पहले से ही लिया जा चुका है।",
+            "image_required":"छवि आवश्यक है।",
+            "file_type_not":"फ़ाइल प्रकार समर्थित नहीं है।"
         }
     },
     "forgot_password":{

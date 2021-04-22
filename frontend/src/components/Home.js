@@ -114,8 +114,11 @@ function Home() {
                 <div className="heading-part mb_20 ">
                   <h2 className={`main_title ${rt1}`} style={{float:( i18n.language  === 'pk' ? 'right' : ''),paddingLeft:(i18n.language  === 'pk' ? '10px' : '')}}>{t('home.brand')}</h2>
                   <div className={`${rta1}`}>
+                  {brand.length >= 5 ? <React.Fragment>
                         <button className="btn" style={{marginRight:'5px',padding:'5px'}} onClick={() => carousel.current.slickPrev()}><i className="fa fa-arrow-left" /></button>
                         <button className="btn" style={{padding:'5px'}} onClick={() => carousel.current.slickNext()}><i className="fa fa-arrow-right" /></button>
+                        </React.Fragment> : ''
+                }
                       </div>
                 </div>
                 <div className="row">

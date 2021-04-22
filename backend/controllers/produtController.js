@@ -8,26 +8,47 @@ const Category= require('../models/category');
 const Brand= require('../models/brand');
 exports.newProduct = catchAsyncErrors (async (req,res,next) => {
   
+    if(!req.body.name){
+        return next(new ErrorHandler('Name is required.',400))
+    }
+    else if(!req.body.price){
+        return next(new ErrorHandler('Price is required.',400))
+    }
+    else if(!req.body.images){
+        return next(new ErrorHandler('Image is required.',400))
+    }
+  else if(!req.body.description){
+        return next(new ErrorHandler('Description is required.',400))
+    }
+   else if(!req.body.stock){
+        return next(new ErrorHandler('Stock is required.',400))
+    }
+    else if(!req.body.seller){
+        return next(new ErrorHandler('Seller is required.',400))
+    }
+
     let images = []
     if (typeof req.body.images === 'string') {
         images.push(req.body.images)
     } else {
         images = req.body.images
     }
-
     let imagesLinks = [];
-
     for (let i = 0; i < images.length; i++) { 
         const result = await cloudinary.v2.uploader.upload(images[i], {
-            folder: 'products'
+            folder: 'products',
+            allowedFormats: ['jpg', 'jpeg', 'png'],
+        },(err) => {
+            if(err){
+                return next(new ErrorHandler(err.message, err.http_code));
+            }
         });
-
-        imagesLinks.push({
-            public_id: result.public_id,
-            url: result.secure_url
-        })
+            imagesLinks.push({
+                public_id: result.public_id,
+                url: result.secure_url
+            })
     }
-
+   
     req.body.images = imagesLinks
     req.body.slug = slugify(req.body.name);
     req.body.user = req.user.id;
@@ -132,6 +153,21 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
     if (!product) {
         return next(new ErrorHandler('Product not found', 404));
     }
+    if(!req.body.name){
+        return next(new ErrorHandler('Name is required.',400))
+    }
+    else if(!req.body.price){
+        return next(new ErrorHandler('Price is required.',400))
+    }
+    else if(!req.body.description){
+        return next(new ErrorHandler('Description is required.',400))
+    }
+     else if(!req.body.stock){
+        return next(new ErrorHandler('Stock is required.',400))
+    }
+    else if(!req.body.seller){
+        return next(new ErrorHandler('Seller is required.',400))
+    }
     let images = []
     if (typeof req.body.images === 'string') {
         images.push(req.body.images)
@@ -145,7 +181,12 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
         let imagesLinks = [];
         for (let i = 0; i < images.length; i++) {
             const result = await cloudinary.v2.uploader.upload(images[i], {
-                folder: 'products'
+                folder: 'products',
+                allowedFormats: ['jpg', 'jpeg', 'png'],
+            },(err) => {
+                if(err){
+                    return next(new ErrorHandler(err.message, err.http_code));
+                }
             });
 
             imagesLinks.push({

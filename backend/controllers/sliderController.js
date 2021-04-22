@@ -5,8 +5,16 @@ const Slider = require('../models/slider');
 
 exports.newSlider = catchAsyncErrors (async (req,res,next) => {
     const { name,url } = req.body
+    if(!req.body.name){
+        return next(new ErrorHandler('Name is required.',400))
+    }
     const result = await cloudinary.v2.uploader.upload(req.body.images, {
-        folder: 'sliders'
+        folder: 'sliders',
+        allowedFormats: ['jpg', 'jpeg', 'png'],
+    },(err) => {
+        if(err){
+            return next(new ErrorHandler(err.message, err.http_code));
+        }
     })
     const slider = await Slider.create({
         name,
@@ -40,7 +48,9 @@ exports.updateSlider = catchAsyncErrors(async (req, res, next) => {
     if (!sliders) {
         return next(new ErrorHandler('Slider not found', 404));
     }
-
+    if(!req.body.name){
+        return next(new ErrorHandler('Name is required.',400))
+    }
     const newUserData = {
         name: req.body.name,
         url: req.body.url
@@ -50,7 +60,12 @@ exports.updateSlider = catchAsyncErrors(async (req, res, next) => {
         const res = await cloudinary.v2.uploader.destroy(image_id);
 
         const result = await cloudinary.v2.uploader.upload(req.body.images, {
-            folder: 'sliders'
+            folder: 'sliders',
+            allowedFormats: ['jpg', 'jpeg', 'png'],
+        },(err) => {
+            if(err){
+                return next(new ErrorHandler(err.message, err.http_code));
+            }
         })
 
         newUserData.images = {

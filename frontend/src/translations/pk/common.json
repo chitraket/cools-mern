@@ -44,7 +44,9 @@
         "password":"پاس ورڈ",
         "register_validation":{
             "name_required":"نام کی ضرورت ہے۔",
-            "email_already_taken":"ای میل کے پاس پہلے سے ہی لیا گیا ہے."
+            "email_already_taken":"ای میل کے پاس پہلے سے ہی لیا گیا ہے.",
+            "image_required":"فائل کی قسم معاون نہیں ہے۔",
+            "file_type_not":"تصویر ضروری ہے۔"
         }
     },
     "forgot_password":{

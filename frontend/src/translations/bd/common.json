@@ -44,7 +44,9 @@
         "password":"পাসওয়ার্ড",
         "register_validation":{
             "name_required":"নাম প্রয়োজন।",
-            "email_already_taken":"ইমেলটি ইতিমধ্যে গ্রহণ করা হয়েছে."
+            "email_already_taken":"ইমেলটি ইতিমধ্যে গ্রহণ করা হয়েছে.",
+            "image_required":"চিত্র প্রয়োজন।",
+            "file_type_not":"ফাইলের প্রকারটি সমর্থিত নয়।"
         }
     },
     "forgot_password":{

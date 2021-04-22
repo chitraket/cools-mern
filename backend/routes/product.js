@@ -9,7 +9,7 @@ router.route('/product/:id').get(getSingleProduct);
 router.route('/product/category/:id').get(getProductCategory);
 router.route('/product/brand/:id').get(getProductBrand);
 router.route('/topproduct').get(gettopProduct);
-router.route('/admin/product/new').post(isAuthenticatedUser, authorizeRoles('admin'), newProduct);
+router.route('/admin/product/new').post(isAuthenticatedUser, authorizeRoles('admin'),newProduct);
 router.route('/admin/product/:id')
     .put(isAuthenticatedUser, authorizeRoles('admin'), updateProduct)
     .delete(isAuthenticatedUser, authorizeRoles('admin'), deleteProduct);
