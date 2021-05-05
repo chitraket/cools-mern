@@ -40,7 +40,7 @@ function ProcessOrder({ match }) {
     }
     const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode},${shippingInfo.country}`
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false
-
+    const isMode = paymentInfo && paymentInfo.mode === 'cash' ? true : false
     return (
         <React.Fragment>
             <div className="row">
@@ -64,9 +64,10 @@ function ProcessOrder({ match }) {
                                 <p><b>Phone:</b>{shippingInfo && shippingInfo.phoneNo}</p>
                                 <p><b>Adress:</b>{shippingDetails}</p>
                                 <p><b>Amount:</b>{totalPrice}</p>
-                                <p><b>Payment:</b><p className={isPaid ? "greenColor" : "redColor"}><b>{isPaid ? "PAID" : "NOT PAID"}</b></p> </p>
-                                <p><b>Stripe ID:</b>{paymentInfo && paymentInfo.id}</p>
-                                <p><b>Order Status:</b><p className={order.orderStatus && String(order.orderStatus).includes("Delivered") ? "greenColor" : "redColor"}><b>{orderStatus}</b></p> </p>
+                                <p><b>Payment: </b> <label className={isPaid ? "greenColor" : "redColor"}>{isPaid ? "Paid" : "Not Paid"}</label> </p>
+                                <p><b>Mode:</b><label className="greenColor"> {isMode ? "Cash On Delivery" : "Online Payment"}</label></p> 
+                                <p><b>Order Status:</b><label className={order.orderStatus && String(order.orderStatus).includes("Delivered") ? "greenColor" : "redColor"}> {orderStatus}</label> </p>
+                                {paymentInfo && paymentInfo.id ? <p><b>Online ID:</b>{ paymentInfo && paymentInfo.id}</p> : ''}
                                 <div className="table-responsive">
                                     <table className="table table-bordered">
                                         <thead>

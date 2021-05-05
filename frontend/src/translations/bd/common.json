@@ -2,7 +2,7 @@
     "navbar": {
         "home": "বাড়ি",
         "glasses":"চশমা",
-        "categories":"বিভাগ",
+        "categories":"আকার",
         "brand":"ব্র্যান্ডগুলি",
         "login": "প্রবেশ করুন",
         "register":"নিবন্ধন",
@@ -14,7 +14,7 @@
         "logout":"প্রস্থান"
     },
     "footer":{
-        "categories":"বিভাগ"
+        "categories":"আকার"
     },
     "home":{
         "brand":"ব্র্যান্ডগুলি",
@@ -123,7 +123,7 @@
         "availability":"উপস্থিতি",
         "home":"বাড়ি",
         "products":"পণ্য",
-        "category":"বিভাগ",
+        "category":"আকার",
         "qty":"পরিমাণ",
         "overview":"ওভারভিউ",
         "reviews":"পর্যালোচনা",
@@ -131,7 +131,10 @@
         "post_login":"আপনার পর্যালোচনা পোস্ট করতে লগইন করুন।",
         "submit_review":"আপনার পর্যালোচনা জমা দিন",
         "submit_review_msg":"পর্যালোচনা সফলভাবে পোস্ট করা",
-        "submit":"জমা দিন"
+        "submit":"জমা দিন",
+        "seller":"বিক্রেতা",
+        "size":"আকার",
+        "material":"উপাদান"
     },
     "cart":{
         "empty_cart":"তোমার থলে তো খালি",
@@ -142,7 +145,7 @@
         "shopping_cart":"বাজারের ব্যাগ",
         "image":"চিত্র",
         "name":"নাম",
-        "category":"বিভাগ",
+        "category":"আকার",
         "unit_price":"একক দাম",
         "delete":"মুছে ফেলা",
         "total":"মোট",
@@ -165,7 +168,7 @@
         "phone":"ফোন নম্বর",
         "image":"চিত্র",
         "name":"নাম",
-        "category":"বিভাগ",
+        "category":"আকার",
         "sub_total":"উপ-মোট",
         "unit_price":"একক দাম",
         "delete":"মুছে ফেলা",
@@ -199,9 +202,12 @@
     "product_filter":{
         "price_range":"মূল্য পরিসীমা",
         "rating":"রেটিং",
-        "category":"শ্রেণিবদ্ধ",
+        "category":"আকার",
         "brand":"ব্র্যান্ড",
         "product_not_found":"পণ্য পাওয়া যায় নি :("
+    },
+    "slider":{
+        "slider_not_found":"স্লাইডার পাওয়া যায় নি"
     }
 
 }

@@ -39,7 +39,10 @@ import {
         ALL_PRODUCTS_BRAND_FAIL,
         UPDATE_PRODUCT_STATUS_REQUEST,
         UPDATE_PRODUCT_STATUS_SUCCESS,
-        UPDATE_PRODUCT_STATUS_FAIL
+        UPDATE_PRODUCT_STATUS_FAIL,
+        ALL_BEST_PRODUCTS_REQUEST,
+        ALL_BEST_PRODUCTS_FAIL,
+        ALL_BEST_PRODUCTS_SUCCESS
 }from '../constants/productConstants'
 
 export const getProduct = (keyword = '',currentPage = 1, price,cat,brands,rating=0) => async(dispatch) =>{
@@ -84,6 +87,24 @@ export const gettopProduct = (sort,order) => async(dispatch) =>{
     }catch(error){
         dispatch({
             type:ALL_TOP_PRODUCTS_FAIL,
+            payload:error.response.data.message
+        })
+    }
+}
+export const getBestProduct = (sort,order) => async(dispatch) =>{
+    try{
+        dispatch({
+            type:ALL_BEST_PRODUCTS_REQUEST
+        })
+        const { data } = await axios.get(`/api/v1/topproduct?sort=${sort}&order=${order}`)
+        console.log(data);
+        dispatch({
+            type:ALL_BEST_PRODUCTS_SUCCESS,
+            payload:data.top_product
+        })
+    }catch(error){
+        dispatch({
+            type:ALL_BEST_PRODUCTS_FAIL,
             payload:error.response.data.message
         })
     }

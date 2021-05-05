@@ -62,6 +62,9 @@ const orderSchema = mongoose.Schema({
         },
         status:{
             type:String
+        },
+        mode:{
+            type:String
         }
     },
     paidAt:{
@@ -93,6 +96,9 @@ const orderSchema = mongoose.Schema({
         default:'Processing'
     },
     deliverdAt:{
+        type:Date
+    },
+    cancelAt:{
         type:Date
     },
     createdAt:{

@@ -23,7 +23,6 @@ exports.newSlider = catchAsyncErrors (async (req,res,next) => {
             public_id: result.public_id,
             url: result.secure_url
         }
-
     });
     res.status(201).json({
         success:true,
@@ -46,6 +45,7 @@ exports.getSingleSlider = catchAsyncErrors ( async (req,res,next) => {
 exports.updateSlider = catchAsyncErrors(async (req, res, next) => {
     let sliders = await Slider.findById(req.params.id);
     if (!sliders) {
+        
         return next(new ErrorHandler('Slider not found', 404));
     }
     if(!req.body.name){

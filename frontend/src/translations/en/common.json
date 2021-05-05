@@ -2,7 +2,7 @@
     "navbar": {
         "home": "Home",
         "glasses":"Glasses",
-        "categories":"Categories",
+        "categories":"Shapes",
         "brand":"Brands",
         "login": "Login",
         "register":"Register",
@@ -15,7 +15,7 @@
         
     },
     "footer":{
-        "categories":"Categories"
+        "categories":"Shapes"
     },
     "home":{
         "brand":"Brands",
@@ -123,7 +123,7 @@
         "availability":"Availability",
         "home":"Home",
         "products":"Products",
-        "category":"Category",
+        "category":"Shape",
         "qty":"Qty",
         "overview":"Overview",
         "reviews":"Reviews",
@@ -131,7 +131,10 @@
         "post_login":"Login to post your review",
         "submit_review":"Submit your review",
         "submit_review_msg":"Review posted successfully",
-        "submit":"Submit"
+        "submit":"Submit",
+        "seller":"Seller",
+        "size":"Size",
+        "material":"Material"
     },
     "cart":{
         "empty_cart":"Your Cart is Empty",
@@ -142,7 +145,7 @@
         "shopping_cart":"Shopping Cart",
         "image":"Image",
         "name":"Name",
-        "category":"Category",
+        "category":"Shape",
         "unit_price":"Unit Price",
         "delete":"Delete",
         "total":"Total",
@@ -166,7 +169,7 @@
         "image":"Image",
         "name":"Name",
         "sub_total":"Sub-Total",
-        "category":"Category",
+        "category":"Shape",
         "unit_price":"Unit Price",
         "delete":"Delete",
         "total":"Total",
@@ -199,8 +202,11 @@
     "product_filter":{
         "price_range":"Price Range",
         "rating":"Rating",
-        "category":"Categorys",
+        "category":"Shape",
         "brand":"Brands",
         "product_not_found":"Product not found :("
+    },
+    "slider":{
+        "slider_not_found":"Slider not found"
     }
 }

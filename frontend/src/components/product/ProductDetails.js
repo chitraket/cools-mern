@@ -153,14 +153,50 @@ const favoriteDeleteHandler = (e,id) => {
   dispatch(deletefavorite(formData));
 }
   const settings_product = {
-    dots: true,
+    dots: false,
+    arrows: false,
     infinite: true,
     speed: 500,
     slidesToShow: Object.keys(related_product).length > 5 ? 5 : Object.keys(related_product).length,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    pauseOnHover: true
+    pauseOnHover: true,
+    initialSlide: 0,
+    responsive: [
+      {
+          breakpoint: 1024,
+          settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: false
+          }
+      },
+      {
+          breakpoint: 768,
+          settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              initialSlide: 3
+          }
+      },
+      {
+          breakpoint: 600,
+          settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+          }
+      },
+      {
+          breakpoint: 480,
+          settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+          }
+      }
+  ]
   };
   return (
     <React.Fragment>
@@ -205,9 +241,7 @@ const favoriteDeleteHandler = (e,id) => {
                 </span>
                 <hr />
                 <ul className="list-unstyled product_info mtb_20">
-                  <li>
-                    <label>{t('product_details.brand')} : </label>
-                    <span> <a href="/">{product.seller}</a></span></li>
+                 
                   <li>
                     <label>{t('product_details.availability')} : </label>
                     <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'} >{product.stock > 0 ? ' In Stock' : ' Out of Stock'}</span></li>
@@ -217,6 +251,15 @@ const favoriteDeleteHandler = (e,id) => {
                     <li>
                     <label>{t('product_details.brand')} : </label>
                     <Link to={product.brand && product.brand.type === 'store' ? `/brand/${product.brand &&  product.brand._id}` : `/search/brand/${product.brand && product.brand._id}`}> {product.brand && product.brand.name} </Link></li>
+                    <li>
+                    <label>{t('product_details.seller')} : </label>
+                    <span> {product.seller}</span></li>
+                    <li>
+                    <label>{t('product_details.size')} : </label>
+                    <span> {product.size}</span></li>
+                    <li>
+                    <label>{t('product_details.material')} : </label>
+                    <span> {product.material}</span></li>
                 </ul>
                 <hr />
                 <p className="product-desc mtb_30"> {product.description}</p>
@@ -323,6 +366,8 @@ const favoriteDeleteHandler = (e,id) => {
                 </div>
               </div>
             </div>
+            { related_product.length === 0 ? '' :
+            <React.Fragment>
             <div className="row">
               <div className="col-md-12">
                 <div className="heading-part text-center">
@@ -334,6 +379,7 @@ const favoriteDeleteHandler = (e,id) => {
                 </div>
               </div>
             </div>
+           
             <div className="row mb_30">
             <Slider {...settings_product} ref={carousel}>
                     {related_product && related_product.map(product => (
@@ -341,6 +387,8 @@ const favoriteDeleteHandler = (e,id) => {
                     ))}
                 </Slider>
             </div>
+            </React.Fragment>
+          } 
           </div>
         </div>
       </div>

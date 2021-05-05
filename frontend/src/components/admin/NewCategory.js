@@ -72,10 +72,10 @@ const NewCategory = ({ history }) => {
                 <div className="col-sm-8 col-md-8 col-lg-9 mtb_30">
                     {/* =====  BANNER STRAT  ===== */}
                     <div className="breadcrumb ptb_20">
-                        <h1>New Category</h1>
+                        <h1>New Shape</h1>
                         <ul>
                             <li><Link to="/">Home</Link></li>
-                            <li className="active">New Category</li>
+                            <li className="active">New Shape</li>
                         </ul>
                     </div>
                     <div className="row">

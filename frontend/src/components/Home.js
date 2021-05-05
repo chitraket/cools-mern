@@ -14,6 +14,7 @@ import SliderList from './admin/SliderList'
 import './Home.scss'
 import NewProduct from './product/NewProduct'
 import MetaData from './layout/MetaData'
+import TopProduct from './product/TopProduct'
 function Home() {
   const alert = useAlert();
   const disptach = useDispatch();
@@ -50,7 +51,42 @@ function Home() {
     autoplay: true,
     autoplaySpeed: 3000,
     pauseOnHover: true,
-    arrows:true
+    arrows:false,
+    initialSlide: 0,
+    responsive: [
+      {
+          breakpoint: 1024,
+          settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: false
+          }
+      },
+      {
+          breakpoint: 768,
+          settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              initialSlide: 3
+          }
+      },
+      {
+          breakpoint: 600,
+          settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+          }
+      },
+      {
+          breakpoint: 480,
+          settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+          }
+      }
+  ]
   };
   const settingss = {
     dots: true,
@@ -72,7 +108,42 @@ function Home() {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
-    pauseOnHover: true
+    pauseOnHover: true,
+    initialSlide: 0,
+    responsive: [
+      {
+          breakpoint: 1024,
+          settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: false
+          }
+      },
+      {
+          breakpoint: 768,
+          settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              initialSlide: 3
+          }
+      },
+      {
+          breakpoint: 600,
+          settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2,
+              initialSlide: 2
+          }
+      },
+      {
+          breakpoint: 480,
+          settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+          }
+      }
+  ]
   };
   return (
     <React.Fragment>
@@ -107,7 +178,7 @@ function Home() {
                 </div>
               </div>
               <NewProduct carousel={carousel} title={t('home.new_product')} sort="createdAt" order="desc" rt1={rt1} rta1={rta1} i18n={i18n} t={t}/>
-              <NewProduct carousel={carousel} title={t('home.best_selling_product')} sort="sold" order="desc" rt1={rt1} rta1={rta1} i18n={i18n} t={t}/>
+              <TopProduct carousel={carousel} title={t('home.best_selling_product')} sort="sold" order="desc"  rt1={rt1} rta1={rta1} i18n={i18n} t={t}/>
             </div>
             <div id="brand_carouse" className="mtb_40 text-center">
               <div className="type-01">

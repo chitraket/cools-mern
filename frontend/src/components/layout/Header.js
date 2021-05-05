@@ -178,7 +178,7 @@ const Header = () => {
               <div className={`collapse navbar-collapse js-navbar-collapse ${rtmc2}`}>
                 <ul id="menu" className={`nav navbar-nav `}>
                   <li><NavLink to={'/'}>{t('navbar.home')}</NavLink></li> 
-                  <li className="dropdown mega-dropdown"> <a href="#" className="dropdown-toggle" data-toggle="dropdown">{t('navbar.glasses')}</a>
+                  <li className="dropdown mega-dropdown"> <a href="!#" className="dropdown-toggle" data-toggle="dropdown">{t('navbar.glasses')}</a>
                     <ul className="dropdown-menu mega-dropdown-menu row">
                       <li className="col-md-3" className={`${rtmc1}`}>
                         <ul className={`${rt1}`}>

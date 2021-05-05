@@ -82,6 +82,7 @@ const UpdateUser = ({ history , match }) => {
                                             value={role}
                                             onChange={(e) => setRole(e.target.value)}
                                         >
+                                          <option value="" disabled> Select Role</option>
                                             <option value="user">User</option>
                                             <option value="admin">Admin</option>
                                         </select>

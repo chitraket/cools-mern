@@ -53,7 +53,6 @@ const Login = ({ history ,location }) => {
                 <li className="active">{t('login.login')}</li>
               </ul>
             </div>
-      {/* contact  */}
       <div className="row">
         <div className="col-md-6 col-md-offset-3">
           <div className="panel-login">

@@ -1,18 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useTranslation } from "react-i18next";
 import MetaData from '../layout/MetaData';
+import { createOrder } from '../../actions/orderAction';
+import { removeItemFromCart } from '../../actions/cartActions';
 
 function ConfirmOrder({ history }) {
   const { cartItems, shippingInfo } = useSelector(state => state.cart)
+  const [radio,setRadio] = useState("cashondelivery");
   const [t, i18n] = useTranslation('common');
   const rt1 = ( i18n.language === 'pk' ? 'text-right' : 'text-left' )
+  const dispatch = useDispatch()
   const { user } = useSelector(state => state.auth)
   const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
   const shippingPrice = itemsPrice > 200 ? 0 : 25
   const taxPrice = Number((0.05 * itemsPrice).toFixed(2))
   const totalPrice = (itemsPrice + shippingPrice + taxPrice).toFixed(2)
+  console.log(radio);
   const processToPayment = () => {
       const data = {
           itemsPrice: itemsPrice.toFixed(2),
@@ -21,7 +26,28 @@ function ConfirmOrder({ history }) {
           totalPrice
       }
       sessionStorage.setItem('orderInfo', JSON.stringify(data))
+      if(radio === "cashondelivery"){
+        const order = {
+          orderItems: cartItems,
+          shippingInfo 
+        }
+        order.itemsPrice = itemsPrice
+        order.shippingPrice = shippingPrice
+        order.taxPrice = taxPrice
+        order.totalPrice = totalPrice
+        order.paymentInfo = {
+          status: "padding",
+          mode:"cash"
+      }
+        dispatch(createOrder(order))
+        {cartItems.map(item => (
+          dispatch(removeItemFromCart(item.product))
+        ))}
+        history.push('/success')
+      }
+      else{
       history.push('/payment')
+      }
     }
     return (
             <React.Fragment>
@@ -97,7 +123,18 @@ function ConfirmOrder({ history }) {
         </tbody>
       </table>
     </div>
+    <div className="pull-right mt_20 ">
+    <label >
+  <input type="radio" value="cashondelivery" name="redio1" checked={radio === "cashondelivery"} onChange={(e)=>setRadio(e.target.value)} />
+  Cash On Delivery
+  </label>
+<label >
+  <input type="radio" value="onlinepayment" name="redio1" checked={radio === "onlinepayment"} onChange={(e)=>setRadio(e.target.value)} />
+  Online Payment
+  </label>
   </div>
+  </div>
+  
     <button className={`btn pull-right mt_30 ${rt1}`} style={{textAlign:( i18n.language  === 'pk' ? 'right' : '') }} type="submit" onClick={processToPayment} >{t('confirm_order.order_success')}</button>
 </div>
 </div>

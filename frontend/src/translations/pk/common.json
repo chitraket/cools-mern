@@ -2,7 +2,7 @@
     "navbar": {
         "home": "گھر",
         "glasses":"شیشے",
-        "categories":"اقسام",
+        "categories":"شکلیں",
         "brand":"برانڈز",
         "login": "لاگ ان کریں",
         "register":"رجسٹر کریں",
@@ -14,7 +14,7 @@
         "logout":"لاگ آوٹ"
     },
     "footer":{
-        "categories":"اقسام"
+        "categories":"شکلیں"
     },
     "home":{
         "brand":"برانڈز",
@@ -123,7 +123,7 @@
         "availability":"دستیابی",
         "home":"گھر",
         "products":"مصنوعات",
-        "category":"قسم",
+        "category":"شکل",
         "qty":"مقدار",
         "overview":"جائزہ",
         "reviews":"جائزہ",
@@ -131,7 +131,10 @@
         "post_login":"اپنا جائزہ پوسٹ کرنے کے لئے لاگ ان کریں۔",
         "submit_review":"اپنا جائزہ پیش کریں",
         "submit_review_msg":"جائزہ کامیابی کے ساتھ پوسٹ کیا گیا",
-        "submit":"جمع کرائیں"
+        "submit":"جمع کرائیں",
+        "seller":"بیچنے والے",
+        "size":"سائز",
+        "material":"مٹیریل"
     },
     "cart":{
         "empty_cart":"آپ کی ٹوکری خالی ہے",
@@ -142,7 +145,7 @@
         "shopping_cart":"خریداری کی ٹوکری",
         "image":"تصویر",
         "name":"نام",
-        "category":"قسم",
+        "category":"شکل",
         "unit_price":"اکائی قیمت",
         "delete":"حذف کریں",
         "total":"کل",
@@ -166,7 +169,7 @@
         "image":"تصویر",
         "name":"نام",
         "sub_total":"ذیلی کل",
-        "category":"قسم",
+        "category":"شکل",
         "unit_price":"اکائی قیمت",
         "delete":"حذف کریں",
         "total":"کل",
@@ -199,10 +202,12 @@
     "product_filter":{
         "price_range":"قیمت کی حد",
         "rating":"درجہ بندی",
-        "category":"زمرہ جات",
+        "category":"شکلیں",
         "brand":"برانڈز",
         "product_not_found":"مصنوعہ نہیں ملا :("
+    },
+    "slider":{
+        "slider_not_found":"سلائیڈر نہیں ملی"
     }
-
 }
 

@@ -27,7 +27,7 @@ function Sidebar() {
 
                     <li>
                         <a href="#categorySubmenu" data-toggle="collapse" aria-expanded="false" className="dropdown-toggle"><i
-                            className="fa fa-product-hunt"></i> Category</a>
+                            className="fa fa-product-hunt"></i> Shape</a>
                         <ul className="collapse list-unstyled" id="categorySubmenu">
                             <li>
                                 <Link to="/admin/categorys"><i className="fa fa-clipboard"></i> All</Link>

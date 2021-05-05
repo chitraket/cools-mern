@@ -98,10 +98,10 @@ const onChange = e => {
                 <div className="col-sm-8 col-md-8 col-lg-9 mtb_30">
         {/* =====  BANNER STRAT  ===== */}
         <div className="breadcrumb ptb_20">
-              <h1>Update Category</h1>
+              <h1>Update Shape</h1>
               <ul>
                 <li><Link to="/">Home</Link></li>
-                <li className="active">Update Category</li>
+                <li className="active">Update Shape</li>
               </ul>
             </div>
       {/* contact  */}

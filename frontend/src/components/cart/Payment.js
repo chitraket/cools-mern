@@ -79,7 +79,8 @@ const Payment = ({ history }) => {
                     if(result.paymentIntent.status === 'succeeded'){
                         order.paymentInfo = {
                             id: result.paymentIntent.id,
-                            status: result.paymentIntent.status
+                            status: result.paymentIntent.status,
+                            mode:"online"
                         }
                         dispatch(createOrder(order))
                         {cartItems.map(item => (

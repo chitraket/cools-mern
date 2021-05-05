@@ -73,7 +73,7 @@ exports.allOrders = catchAsyncErrors( async(req,res,next) => {
     })
 })
 exports.alltotalOrders = catchAsyncErrors( async(req,res,next) => {
-    const orders = await  Order.find({'orderStatus':{$ne:"Cancel"}})
+    const orders = await  Order.find({'orderStatus':{$ne:"Cancel"},'paymentInfo.status':{$ne:"padding"} })
     let totalAmount=0;
     orders.forEach(order=>{
         totalAmount += order.totalPrice
@@ -97,9 +97,15 @@ exports.updateOrder = catchAsyncErrors(async (req, res, next) => {
         order.orderItems.forEach(async item => {
             await updateCancelStock(item.product, item.quantity)
         })
+        order.cancelAt = Date.now();
+    }
+    if(req.body.status == 'Delivered'){
+       if(order.paymentInfo.mode == "cash"){
+        order.paymentInfo.status = "succeeded"
+        }
+        order.deliverdAt = Date.now();
     }
     order.orderStatus = req.body.status,
-    order.deliveredAt = Date.now()
     await order.save()
     res.status(200).json({
         success: true,
@@ -110,7 +116,7 @@ exports.updateUserOrder = catchAsyncErrors(async (req, res, next) => {
     const order = await Order.findById(req.params.id)
     if(req.body.status == 'Cancel'){
         order.orderStatus = req.body.status,
-        order.deliveredAt = Date.now()
+        order.cancelAt = Date.now()
         order.orderItems.forEach(async item => {
             await updateCancelStock(item.product, item.quantity)
         })

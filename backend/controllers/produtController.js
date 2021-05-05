@@ -120,11 +120,12 @@ exports.getProductBrand = catchAsyncErrors ( async (req,res,next) => {
 })
 
 exports.getSingleProduct = catchAsyncErrors ( async (req,res,next) => {
-    const product = await Product.findById(req.params.id).populate('category').populate('brand');
+    
+    const product = await Product.findOne({'_id':req.params.id,'status':{$ne:false}}).populate('category').populate('brand');
     if(!product){
         return next(new ErrorHandler('Product not found', 404))
     }
-    const related_product= await Product.find({'category':product.category,'_id':{$ne:product._id}});
+    const related_product= await Product.find({'category':product.category,'_id':{$ne:product._id},'status':{$ne:false}});
     res.status(200).json({
         success: true,
         product,
@@ -271,7 +272,9 @@ exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
 
 exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
     const product = await Product.findById(req.query.id);
-
+    if(!product){
+        return next(new ErrorHandler('Product not found', 404))
+    }
     res.status(200).json({
         success: true,
         reviews: product.reviews

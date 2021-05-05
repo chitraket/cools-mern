@@ -94,10 +94,10 @@ const CategoryList = ({ history }) => {
                 <div className="col-12 col-sm-9 col-md-9 col-lg-9 mt_30">
                     <React.Fragment>
                     <div className="breadcrumb ptb_20">
-                            <h1>All Category</h1>
+                            <h1>All Shape</h1>
                             <ul>
                                 <li><Link  to={"/"}>Home</Link></li>
-                                <li className="active">All Category</li>
+                                <li className="active">All Shape</li>
                             </ul>
                         </div>
 

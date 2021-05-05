@@ -9,6 +9,7 @@ function Cart({history}) {
     const dispatch = useDispatch();
     const [t, i18n] = useTranslation('common');
   const rt1 = ( i18n.language === 'pk' ? 'text-right' : 'text-left' )
+  const rt12 = ( i18n.language === 'pk' ? 'text-right' : '' )
     const { cartItems } = useSelector(state => state.cart)
     const removeCartItemHandler = (id) => {
       dispatch(removeItemFromCart(id))
@@ -34,7 +35,7 @@ function Cart({history}) {
              
             <div className="mt_20 text-center">
             <img  src="images/animation.gif" alt="empty cart"/>
-             <h2 className="mb_40"> {t('cart.empty_cart')}</h2>
+             <h2 className={`mb_40 ${rt12}`} style={{paddingRight:( i18n.language  === 'pk' ? '50px' : '')}}> {t('cart.empty_cart')}</h2>
               </div>
             </React.Fragment> : (
                 <React.Fragment>

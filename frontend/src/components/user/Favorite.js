@@ -15,7 +15,7 @@ function Favorite() {
     const { user } = useSelector(state => state.auth)
     const { error,list,loading } = useSelector(state => state.list)
     const [t, i18n] = useTranslation('common');
-    const rt1 = ( i18n.language === 'pk' ? 'text-right' : 'text-left' )
+    const rt1 = ( i18n.language === 'pk' ? 'text-right' : 'text-center' )
     const { error: favoriteError, is_Delete} = useSelector(state => state.favorite)  
     useEffect(() => {
         

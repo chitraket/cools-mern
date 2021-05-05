@@ -2,7 +2,7 @@
     "navbar": {
         "home": "घर",
         "glasses":"चश्मा",
-        "categories":"श्रेणियाँ",
+        "categories":"आकार",
         "brand":"ब्रांड्स",
         "login": "लॉग इन",
         "register":"रजिस्टर",
@@ -14,7 +14,7 @@
         "logout":"लॉग आउट"
     },
     "footer":{
-        "categories":"श्रेणियाँ"
+        "categories":"आकार"
     },
     "home":{
         "brand":"ब्रांड्स",
@@ -122,7 +122,7 @@
         "availability":"उपलब्धता",
         "home":"घर",
         "products":"उत्पादों",
-        "category":"वर्ग",
+        "category":"आकार",
         "qty":"मात्रा",
         "overview":"अवलोकन",
         "reviews":"समीक्षा",
@@ -130,7 +130,10 @@
         "post_login":"अपनी समीक्षा पोस्ट करने के लिए लॉग इन करें।",
         "submit_review":"अपनी समीक्षा सबमिट करें",
         "submit_review_msg":"समीक्षा सफलतापूर्वक पोस्ट की गई",
-        "submit":"प्रस्तुत"
+        "submit":"प्रस्तुत",
+        "seller":"विक्रेता",
+        "size":"आकार",
+        "material":"सामग्री"
     },
     "cart":{
         "empty_cart":"आपकी गाड़ी खाली है",
@@ -141,7 +144,7 @@
         "shopping_cart":"शॉपिंग कार्ट",
         "image":"छवि",
         "name":"नाम",
-        "category":"वर्ग",
+        "category":"आकार",
         "unit_price":"यूनिट मूल्य",
         "delete":"हटाएं",
         "total":"संपूर्ण",
@@ -165,7 +168,7 @@
         "image":"छवि",
         "name":"नाम",
         "sub_total":"उप-कुल",
-        "category":"वर्ग",
+        "category":"आकार",
         "unit_price":"यूनिट मूल्य",
         "delete":"हटाएं",
         "total":"संपूर्ण",
@@ -198,9 +201,12 @@
     "product_filter":{
         "price_range":"मूल्य सीमा",
         "rating":"रेटिंग",
-        "category":"श्रेणियाँ",
+        "category":"आकार",
         "brand":"ब्रांड्स",
         "product_not_found":"उत्पाद नहीं मिला :("
+    },
+    "slider":{
+        "slider_not_found":"स्लाइडर नहीं मिला"
     }
 
 }

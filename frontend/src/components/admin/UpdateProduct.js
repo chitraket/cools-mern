@@ -17,6 +17,8 @@ const UpdateProduct = ({ match,history }) => {
     const [brandId, setBrandId] = useState('');
     const [stock,setStock]=useState('')
     const [seller,setSeller]=useState('')
+    const [material,setMaterial]=useState('')
+    const [size,setSize]=useState('')
     const [oldImages,setOldImages]=useState([])
     const [images,setImages]=useState([])
     const [imagesPreview,setImagesPreview]=useState([])
@@ -40,6 +42,8 @@ const UpdateProduct = ({ match,history }) => {
             setSeller(product.seller);
             setStock(product.stock);
             setOldImages(product.images);
+            setMaterial(product.material);
+            setSize(product.size);
         }
         if(error){
             alert.error(error) 
@@ -76,6 +80,8 @@ const UpdateProduct = ({ match,history }) => {
         formData.set('brand',brandId);
         formData.set('stock',stock);
         formData.set('seller',seller);
+        formData.set('size',size);
+        formData.set('material',material);
         images.forEach(image =>{
             formData.append('images',image)
         })
@@ -137,7 +143,7 @@ const UpdateProduct = ({ match,history }) => {
                     </div>
                     <div className="form-group"> 
                     <select className="form-control" id="category_field" value={categoryId}  onChange={(e) => setCategoryId(e.target.value)}>
-                                        <option value="" disabled> Select Category</option>
+                                        <option value="" disabled> Select Shape</option>
                                         {category.map(cate => (
                                             <option key={cate.name}  value={cate._id} >{cate.name}</option>
                                         ))}
@@ -153,6 +159,39 @@ const UpdateProduct = ({ match,history }) => {
 
                                     </select>
                     </div>
+                    <div className="form-group"> 
+                                                    <select className="form-control" id="category_field" value={size}  onChange={(e) => setSize(e.target.value)}>
+                                                                        <option value="" disabled> Select Size</option>
+                                                                        <option value="5XS">5XS</option>
+                                                                        <option value="4XS">4XS</option>
+                                                                        <option value="3XS">3XS</option>
+                                                                        <option value="2XS">2XS</option>
+                                                                        <option value="XS">XS</option>
+                                                                        <option value="S">S</option>
+                                                                        <option value="M">M</option>
+                                                                        <option value="L">L</option>
+                                                                        <option value="XL">XL</option>
+                                                                        <option value="2XL">2XL</option>
+                                                                        <option value="3XL">3XL</option>
+                                                                        <option value="4XL">4XL</option>
+                                                                        <option value="5XL">5XL</option>
+                                                                        <option value="6XL">6XL</option>
+                                                                        <option value="7XL">7XL</option>
+                                                                        <option value="8XL">8XL</option>
+                                                                    </select>
+                                                    </div>
+                                                    <div className="form-group"> 
+                                                    <select className="form-control" id="category_field" value={material}  onChange={(e) => setMaterial(e.target.value)}>
+                                                                        <option value="" disabled> Select Material</option>
+                                                                        <option value="Cotton">Cotton</option>
+                                                                        <option value="Down">Down</option>
+                                                                        <option value="Leather">Leather</option>
+                                                                        <option value="Net">Net</option>
+                                                                        <option value="Rubber">Rubber</option>
+                                                                        <option value="Satin">Satin</option>
+                                                                        <option value="Synthetic">Synthetic</option>
+                                                                    </select>
+                                                    </div>
                     <div className="form-group">
                     <input type="number" id="stock_field" className="form-control"  placeholder="Stock" value={stock} onChange={(e) => setStock(e.target.value)} />
                     </div>
