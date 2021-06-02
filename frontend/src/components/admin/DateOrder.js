@@ -3,93 +3,70 @@ import React, { useEffect, useState } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import { clearErrors, deleteReview, getProductReviews } from '../../actions/productsActions'
-import { DELETE_REVIEW_RESET } from '../../constants/productConstants'
+import { allDateOrders } from '../../actions/orderAction'
 import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 
-const ProductReviews = () => {
-    const [productId, setProductId] = useState('');
+function DateOrder() {
+    const [startdate, setStartdate] = useState('');
+    const [enddate, setEnddate] = useState('');
     const alert = useAlert();
     const dispatch = useDispatch();
-    const { loading, error, reviews } = useSelector(state => state.productReviews);
-    const { isDeleted } = useSelector(state => state.review);
+    const { orders, totalAmount, loading } = useSelector(state => state.dateorder)
     const { user } = useSelector(state => state.auth)
     useEffect(() => {
-        if (error) {
-            alert.error(error);
-            dispatch(clearErrors())
+        if (startdate !== '' && enddate !== '') {
+            dispatch(allDateOrders(startdate, enddate))
         }
-        if (productId !== '') {
-            dispatch(getProductReviews(productId))
-        }
-        if (isDeleted) {
-            alert.success('Review deleted successfully');
-            dispatch({ type: DELETE_REVIEW_RESET })
-        }
-
-    }, [dispatch, alert, error, productId, isDeleted])
+    }, [dispatch, alert, startdate, enddate])
+    const submitHandler = (e) => {
+        e.preventDefault();
+        dispatch(allDateOrders(startdate, enddate))
+    }
     const per = [];
     user && user.permission && user.permission.map((p, i) => {
         return per.push(p);
     })
-    const deleteReviewHandler = (id) => {
-        dispatch(deleteReview(id, productId))
-    }
-    const submitHandler = (e) => {
-        e.preventDefault();
-        dispatch(getProductReviews(productId))
-    }
     const setReviews = () => {
         const data = {
             columns: [
                 {
-                    label: 'Review ID',
+                    label: 'Order ID',
                     field: 'id',
                     sort: 'asc'
                 },
                 {
-                    label: 'Rating',
-                    field: 'rating',
+                    label: 'Total Price',
+                    field: 'totalPrice',
                     sort: 'asc'
                 },
                 {
-                    label: 'Comment',
-                    field: 'comment',
+                    label: 'Order Status',
+                    field: 'orderStatus',
                     sort: 'asc'
                 },
                 {
-                    label: 'User',
-                    field: 'user',
+                    label: 'Payment',
+                    field: 'payment',
                     sort: 'asc'
-                },
-                {
-                    label: 'Actions',
-                    field: 'actions',
                 },
             ],
             rows: []
         }
-        reviews && reviews.forEach(review => {
+        orders && orders.forEach(order => {
             data.rows.push({
-                id: review._id,
-                rating: review.rating,
-                comment: review.comment,
-                user: review.name,
-                actions: <React.Fragment>
-                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteReviewHandler(review._id)}>
-                        <i className="fa fa-trash"></i>
-                    </button>
-                </React.Fragment>
+                id: order._id,
+                totalPrice: order.totalPrice,
+                orderStatus: order.orderStatus,
+                payment: order.paymentInfo && order.paymentInfo.mode,
             })
         })
-
         return data
     }
     return (
         <React.Fragment>
             {
-                per.includes("20") ?
+                per.includes("17") ?
                     <React.Fragment>
                         <div className="row">
                             <div className="col-12 col-md-2">
@@ -99,26 +76,35 @@ const ProductReviews = () => {
                             <div className="col-12 col-sm-9 col-md-9 col-lg-9 mt_30">
                                 {/* =====  BANNER STRAT  ===== */}
                                 <div className="breadcrumb ptb_20">
-                                    <h1>Product Review</h1>
+                                    <h1>Payment</h1>
                                     <ul>
                                         <li><Link to={"/"}>Home</Link></li>
-                                        <li className="active">Product Review</li>
+                                        <li className="active">Payment</li>
                                     </ul>
                                 </div>
                                 <div className="row justify-content-center mt-5">
                                     <div className="col-5">
                                         <form onSubmit={submitHandler}>
                                             <div className="form-group">
-                                                <label htmlFor="productId_field">Enter Product ID</label>
+                                                <label htmlFor="productId_field">Enter start date</label>
                                                 <input
-                                                    type="text"
+                                                    type="date"
                                                     id="productId_field"
                                                     className="form-control"
-                                                    value={productId}
-                                                    onChange={(e) => setProductId(e.target.value)}
+                                                    value={startdate}
+                                                    onChange={(e) => setStartdate(e.target.value)}
                                                 />
                                             </div>
-
+                                            <div className="form-group">
+                                                <label htmlFor="productId_field">Enter end date</label>
+                                                <input
+                                                    type="date"
+                                                    id="productId_field"
+                                                    className="form-control"
+                                                    value={enddate}
+                                                    onChange={(e) => setEnddate(e.target.value)}
+                                                />
+                                            </div>
                                             <button
                                                 id="search_button"
                                                 type="submit"
@@ -129,8 +115,13 @@ const ProductReviews = () => {
                                         </ form>
                                     </div>
                                 </div>
-                                {reviews && reviews.length > 0 ? (
+                                {
+                                    totalAmount ? <p>Total Amount : {totalAmount}</p> : ''
+                                }
+                                {orders && orders.length > 0 ? (
+
                                     loading ? <Loader /> : (
+
                                         <MDBDataTable
                                             data={setReviews()}
                                             className="px-3"
@@ -140,7 +131,7 @@ const ProductReviews = () => {
                                         />
                                     )
                                 ) : (
-                                    <p className="mt-5 text-center">No Reviews.</p>
+                                    <p className="mt-5 text-center">No order.</p>
                                 )}
 
                             </div>
@@ -150,5 +141,4 @@ const ProductReviews = () => {
         </React.Fragment>
     )
 }
-
-export default ProductReviews
+export default DateOrder

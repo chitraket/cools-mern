@@ -14,7 +14,8 @@
         "logout":"लॉग आउट"
     },
     "footer":{
-        "categories":"आकार"
+        "categories":"आकार",
+        "address":"बी-14 कॉलिंस स्ट्रीट वेस्ट विक्टोरिया 2386"
     },
     "home":{
         "brand":"ब्रांड्स",
@@ -158,7 +159,8 @@
         "city":"शहर",
         "phone":"फ़ोन नंबर",
         "post_code":"पोस्ट कोड",
-        "country":"देश"
+        "country":"देश",
+        "save_address":"सेव एड्रेस"
     },
     "confirm_order":{
         "home":"घर",
@@ -207,6 +209,9 @@
     },
     "slider":{
         "slider_not_found":"स्लाइडर नहीं मिला"
+    },
+    "404_error":{
+        "error":"उफ़ ! वह पेज नहीं मिल सका"
     }
 
 }

@@ -2,7 +2,7 @@ import { MDBDataTable } from 'mdbreact'
 import React, { useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { brandDelete, clearErrors, getAdminBrand, updateBrandStatus } from '../../actions/brandActions'
 import { DELETE_BRAND_RESET, UPDATE_BRAND_STATUS_RESET } from '../../constants/brandConstants'
 import Loader from '../layout/Loader'
@@ -11,16 +11,16 @@ import Sidebar from './Sidebar'
 const BrandList = ({ history }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
-
     const { loading, error, brand } = useSelector(state => state.brand);
-    const { error: deleteError, isDeleted ,isUpdatedStatus} = useSelector(state => state.brands)
+    const { error: deleteError, isDeleted, isUpdatedStatus } = useSelector(state => state.brands)
+    const { user } = useSelector(state => state.auth)
     useEffect(() => {
         dispatch(getAdminBrand())
         if (error) {
             alert.error(error);
             dispatch(clearErrors())
         }
-        if(deleteError){
+        if (deleteError) {
             alert.error(deleteError);
             dispatch(clearErrors())
         }
@@ -29,13 +29,16 @@ const BrandList = ({ history }) => {
             history.push('/admin/brands');
             dispatch({ type: DELETE_BRAND_RESET })
         }
-        if(isUpdatedStatus){
+        if (isUpdatedStatus) {
             alert.success('Brand status change');
             history.push('/admin/brands');
-            dispatch({type: UPDATE_BRAND_STATUS_RESET})
+            dispatch({ type: UPDATE_BRAND_STATUS_RESET })
         }
-    },[dispatch, alert, error, history,deleteError,isDeleted,isUpdatedStatus])
-
+    }, [dispatch, alert, error, history, deleteError, isDeleted, isUpdatedStatus])
+    const per = [];
+    user && user.permission && user.permission.map((p, i) => {
+        return per.push(p);
+    })
     const setBrand = () => {
         const data = {
             columns: [
@@ -56,64 +59,76 @@ const BrandList = ({ history }) => {
             ],
             rows: []
         }
-      brand && brand.forEach(brands => {
+        brand && brand.forEach(brands => {
             data.rows.push({
                 id: brands._id,
                 name: brands.name,
                 actions: <React.Fragment>
-                     {
-                            brands.status === "true" ? <button className="btn" onClick={(e)=>onChecked(brands._id,true)} style={{marginLeft:'4px',borderRadius: '50px',  backgroundColor: '#28a745', borderColor: '#28a745'}}>ON</button> : <button className="btn" onClick={(e)=>onChecked(brands._id,false)} style={{marginLeft:'4px',background:"red",borderRadius: '50px',backgroundColor: '#c82333',borderColor: '#bd2130'}}>OFF</button>
-                     }
-                    <Link to={`/admin/brand/${brands._id}`} className="btn  py-1 px-2" style={{marginLeft:'4px'}}>
-                        <i className="fa fa-pencil"></i>
-                    </Link>
-                    <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteBrandHandler(brands._id)} style={{marginLeft:'4px'}}>
-                        <i className="fa fa-trash"></i>
-                    </button>
+                    {per.includes("8") ?
+                        <React.Fragment>
+                            {
+                                brands.status === "true" ? <button className="btn" onClick={(e) => onChecked(brands._id, true)} style={{ marginLeft: '4px', borderRadius: '50px', backgroundColor: '#28a745', borderColor: '#28a745' }}>ON</button> : <button className="btn" onClick={(e) => onChecked(brands._id, false)} style={{ marginLeft: '4px', background: "red", borderRadius: '50px', backgroundColor: '#c82333', borderColor: '#bd2130' }}>OFF</button>
+                            }
+                            <Link to={`/admin/brand/${brands._id}`} className="btn  py-1 px-2" style={{ marginLeft: '4px' }}>
+                                <i className="fa fa-pencil"></i>
+                            </Link>
+                        </React.Fragment>
+                        : ''
+                    }
+                    {
+                        per.includes("9") ?
+                            <React.Fragment>
+                                <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteBrandHandler(brands._id)} style={{ marginLeft: '4px' }}>
+                                    <i className="fa fa-trash"></i>
+                                </button>
+                            </React.Fragment>
+                            : ''}
                 </React.Fragment>
             })
         })
-
         return data
     }
     const deleteBrandHandler = (id) => {
         dispatch(brandDelete(id))
     }
-    const onChecked = (id,value) => {
-        const formData =  new FormData();
-         formData.set('status',!value);
-        dispatch(updateBrandStatus(id,formData))
-     }
+    const onChecked = (id, value) => {
+        const formData = new FormData();
+        formData.set('status', !value);
+        dispatch(updateBrandStatus(id, formData))
+    }
     return (
         <React.Fragment>
-             <div className="row">
-                <div className="col-12 col-md-2">
-                    <Sidebar />
-                </div>
-
-                <div className="col-12 col-sm-9 col-md-9 col-lg-9 mt_30">
-                    <React.Fragment>
-                    <div className="breadcrumb ptb_20">
-                            <h1>All Brand</h1>
-                            <ul>
-                                <li><Link  to={"/"}>Home</Link></li>
-                                <li className="active">All Brand</li>
-                            </ul>
+            {
+                per.includes("8") || per.includes("9") ?
+                    <div className="row">
+                        <div className="col-12 col-md-2">
+                            <Sidebar />
                         </div>
 
-                        {loading ? <Loader /> : (
-                            <MDBDataTable
-                                data={setBrand()}
-                                className="px-3"
-                                bordered
-                                striped
-                                hover
-                            />
-                        )}
+                        <div className="col-12 col-sm-9 col-md-9 col-lg-9 mt_30">
+                            <React.Fragment>
+                                <div className="breadcrumb ptb_20">
+                                    <h1>All Brand</h1>
+                                    <ul>
+                                        <li><Link to={"/"}>Home</Link></li>
+                                        <li className="active">All Brand</li>
+                                    </ul>
+                                </div>
 
-                    </React.Fragment>
-                </div>
-            </div>
+                                {loading ? <Loader /> : (
+                                    <MDBDataTable
+                                        data={setBrand()}
+                                        className="px-3"
+                                        bordered
+                                        striped
+                                        hover
+                                    />
+                                )}
+
+                            </React.Fragment>
+                        </div>
+                    </div>
+                    : <Redirect to="/admin/error" />}
         </React.Fragment>
     )
 }

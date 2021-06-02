@@ -3,41 +3,42 @@ import React, { useEffect } from 'react'
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, Redirect } from 'react-router-dom'
-import { allUsers, clearErrors, deleteUser } from '../../actions/userActions'
-import { DELETE_USER_RESET } from '../../constants/userConstants'
+import { clearErrors, colorDelete, getColor } from '../../actions/productsActions'
+import { DELETE_COLOR_RESET } from '../../constants/productConstants'
 import Loader from '../layout/Loader'
 import Sidebar from './Sidebar'
 
-const UsersList = ({ history }) => {
+const ColorList = ({ history }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
-    const { loading, error, users } = useSelector(state => state.allUsers);
-    const { isDeleted } = useSelector(state => state.user);
+    const { loading, error, color } = useSelector(state => state.color);
+    const { error: deleteError, isDeleted } = useSelector(state => state.colors)
     const { user } = useSelector(state => state.auth)
     useEffect(() => {
-        dispatch(allUsers())
+        dispatch(getColor())
         if (error) {
             alert.error(error);
             dispatch(clearErrors())
         }
-        if (isDeleted) {
-            alert.success('User deleted successfully');
-            history.push('/admin/users')
-            dispatch({ type: DELETE_USER_RESET })
+        if (deleteError) {
+            alert.error(deleteError);
+            dispatch(clearErrors())
         }
-    }, [dispatch, alert, error, isDeleted, history])
+        if (isDeleted) {
+            alert.success('Color deleted successfully');
+            history.push('/admin/colors');
+            dispatch({ type: DELETE_COLOR_RESET })
+        }
+    }, [dispatch, alert, error, history, deleteError, isDeleted])
     const per = [];
     user && user.permission && user.permission.map((p, i) => {
         return per.push(p);
     })
-    const deleteUserHandler = (id) => {
-        dispatch(deleteUser(id))
-    }
-    const setUsers = () => {
+    const setBrand = () => {
         const data = {
             columns: [
                 {
-                    label: 'User ID',
+                    label: 'ID',
                     field: 'id',
                     sort: 'asc'
                 },
@@ -47,13 +48,8 @@ const UsersList = ({ history }) => {
                     sort: 'asc'
                 },
                 {
-                    label: 'Email',
-                    field: 'email',
-                    sort: 'asc'
-                },
-                {
-                    label: 'Role',
-                    field: 'role',
+                    label: 'Code',
+                    field: 'code',
                     sort: 'asc'
                 },
                 {
@@ -63,25 +59,24 @@ const UsersList = ({ history }) => {
             ],
             rows: []
         }
-        users && users.forEach(user => {
+        color && color.forEach(colors => {
             data.rows.push({
-                id: user._id,
-                name: user.name,
-                email: user.email,
-                role: user.role,
+                id: colors._id,
+                name: colors.name,
+                code: colors.code,
                 actions: <React.Fragment>
-                    {per.includes("18") ?
+                    {per.includes("22") ?
                         <React.Fragment>
-                            <Link to={`/admin/user/${user._id}`} className="btn  py-1 px-2" style={{ marginLeft: '4px' }}>
+                            <Link to={`/admin/color/${colors._id}`} className="btn  py-1 px-2" style={{ marginLeft: '4px' }}>
                                 <i className="fa fa-pencil"></i>
                             </Link>
                         </React.Fragment>
                         : ''
                     }
                     {
-                        per.includes("19") ?
+                        per.includes("23") ?
                             <React.Fragment>
-                                <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteUserHandler(user._id)} style={{ marginLeft: '4px' }}>
+                                <button className="btn btn-danger py-1 px-2 ml-2" onClick={() => deleteColorHandler(colors._id)} style={{ marginLeft: '4px' }}>
                                     <i className="fa fa-trash"></i>
                                 </button>
                             </React.Fragment>
@@ -89,43 +84,46 @@ const UsersList = ({ history }) => {
                 </React.Fragment>
             })
         })
-
         return data
+    }
+    const deleteColorHandler = (id) => {
+        dispatch(colorDelete(id))
     }
     return (
         <React.Fragment>
             {
-                per.includes("18") || per.includes("19") ?
-                    <React.Fragment>
-                        <div className="row">
-                            <div className="col-12 col-md-2">
-                                <Sidebar />
-                            </div>
+                per.includes("22") || per.includes("23") ?
+                    <div className="row">
+                        <div className="col-12 col-md-2">
+                            <Sidebar />
+                        </div>
 
-                            <div className="col-12 col-sm-9 col-md-9 col-lg-9 mt_30">
-                                {/* =====  BANNER STRAT  ===== */}
+                        <div className="col-12 col-sm-9 col-md-9 col-lg-9 mt_30">
+                            <React.Fragment>
                                 <div className="breadcrumb ptb_20">
-                                    <h1>All Users</h1>
+                                    <h1>All Color</h1>
                                     <ul>
                                         <li><Link to={"/"}>Home</Link></li>
-                                        <li className="active">All Users</li>
+                                        <li className="active">All Color</li>
                                     </ul>
                                 </div>
+
                                 {loading ? <Loader /> : (
                                     <MDBDataTable
-                                        data={setUsers()}
+                                        data={setBrand()}
                                         className="px-3"
                                         bordered
                                         striped
                                         hover
                                     />
                                 )}
-                            </div>
+
+                            </React.Fragment>
                         </div>
-                    </React.Fragment>
+                    </div>
                     : <Redirect to="/admin/error" />}
         </React.Fragment>
     )
 }
 
-export default UsersList
+export default ColorList

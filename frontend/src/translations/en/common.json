@@ -15,7 +15,8 @@
         
     },
     "footer":{
-        "categories":"Shapes"
+        "categories":"Shapes",
+        "address":"B-14 Collins Street West Victoria 2386"
     },
     "home":{
         "brand":"Brands",
@@ -159,7 +160,8 @@
         "city":"City",
         "phone":"Phone",
         "post_code":"Post Code",
-        "country":"Country"
+        "country":"Country",
+        "save_address":"Save Address"
     },
     "confirm_order":{
         "home":"Home",
@@ -208,5 +210,8 @@
     },
     "slider":{
         "slider_not_found":"Slider not found"
+    },
+    "404_error":{
+        "error":"Oops ! That page could not found"
     }
 }

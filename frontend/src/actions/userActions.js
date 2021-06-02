@@ -45,6 +45,12 @@ import {
     GET_FAVORITE_REQUEST,
     GET_FAVORITE_SUCCESS,
     GET_FAVORITE_FAIL,
+    ALL_ADMINS_REQUEST,
+    ALL_ADMINS_SUCCESS,
+    ALL_ADMINS_FAIL,
+    ADD_ADMINS_REQUEST,
+    ADD_ADMINS_SUCCESS,
+    ADD_ADMINS_FAIL,
 } from '../constants/userConstants'
 import setAuthToken from '../utils/setAuthToken'
 
@@ -251,6 +257,50 @@ export const allUsers = () => async (dispatch) => {
         })
     }
 }
+export const allAdmins = () => async (dispatch) => {
+    try {
+
+        dispatch({ type: ALL_ADMINS_REQUEST })
+
+        const { data } = await axios.get('/api/v1/admin/admins')
+
+        dispatch({
+            type: ALL_ADMINS_SUCCESS,
+            payload: data.users
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ALL_ADMINS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
+export const addAdmins = (adminData) => async (dispatch) => {
+    try {
+
+        dispatch({ type: ADD_ADMINS_REQUEST })
+
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const { data } = await axios.post(`/api/v1/admin/add`, adminData, config)
+
+        dispatch({
+            type: ADD_ADMINS_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        dispatch({
+            type: ADD_ADMINS_FAIL,
+            payload: error.response.data.message
+        })
+    }
+}
 export const logout = () => async (dispatch) => {
     try {
 
@@ -287,7 +337,7 @@ export const getUserDetails = (id) => async (dispatch) => {
         })
     }
 }
-export const updateUser = (id,userData) => async (dispatch) => {
+export const updateUser = (id, userData) => async (dispatch) => {
     try {
 
         dispatch({ type: UPDATE_USER_REQUEST })
@@ -405,6 +455,6 @@ export const getFavorite = () => async (dispatch) => {
 }
 export const clearErrors = () => async (dispatch) => {
     dispatch({
-        type:CLEAR_ERRORS
+        type: CLEAR_ERRORS
     })
 }

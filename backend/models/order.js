@@ -45,6 +45,10 @@ const orderSchema = mongoose.Schema({
                 type:String,
                 required:true
             },
+            color:{
+                type:String,
+                required:true
+            },
             price:{
                 type:Number,
                 required:true

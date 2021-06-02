@@ -33,19 +33,15 @@ const Login = ({ history ,location }) => {
         dispatch(login(email,password))
     }
     return (
-     
        <React.Fragment>
           {loading ? <Loader/> : ( 
             <div className="container">
               <MetaData title={'Login'} />
         <div className="row ">
-
         <div id="column-left" className="col-sm-4 col-md-4 col-lg-3 hidden-xs">
-
         <div className="left_banner left-sidebar-widget mt_30 mb_40"> <a href="/"><img src="images/left1.jpg" alt="Left Banner" className="img-responsive" /></a> </div>
         </div>
     <div className="col-sm-8 col-md-8 col-lg-9 mtb_30">
-        {/* =====  BANNER STRAT  ===== */}
         <div className="breadcrumb ptb_20">
               <h1 style={{float:( i18n.language  === 'pk' ? 'right' : '')}}>{t('login.login')}</h1>
               <ul style={{float:( i18n.language  === 'pk' ? 'left' : '')}}>

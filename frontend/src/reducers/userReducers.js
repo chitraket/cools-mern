@@ -50,6 +50,13 @@ import {
     GET_FAVORITE_REQUEST,
     GET_FAVORITE_SUCCESS,
     GET_FAVORITE_FAIL,
+    ALL_ADMINS_REQUEST,
+    ALL_ADMINS_SUCCESS,
+    ALL_ADMINS_FAIL,
+    ADD_ADMINS_REQUEST,
+    ADD_ADMINS_SUCCESS,
+    ADD_ADMINS_FAIL,
+    ADD_ADMINS_RESET,
 } from '../constants/userConstants'
 
 export const authReducer = (state = { user: {} }, action) => {
@@ -135,7 +142,7 @@ export const userReducer = (state = {}, action) => {
                 loading: false,
                 isUpdated: action.payload
             }
- 
+
         case DELETE_USER_SUCCESS:
             return {
                 ...state,
@@ -150,10 +157,10 @@ export const userReducer = (state = {}, action) => {
                 isUpdated: false
             }
         case DELETE_USER_RESET:
-                return {
-                    ...state,
-                    isDeleted: false
-                }
+            return {
+                ...state,
+                isDeleted: false
+            }
 
         case UPDATE_PROFILE_FAIL:
         case UPDATE_PASSWORD_FAIL:
@@ -212,7 +219,7 @@ export const forgotPasswordReducer = (state = {}, action) => {
             return {
                 ...state,
                 error: null,
-                message:null
+                message: null
             }
 
         default:
@@ -237,6 +244,39 @@ export const allUsersReducer = (state = { users: [] }, action) => {
             }
 
         case ALL_USERS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload
+            }
+
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state;
+    }
+}
+export const allAdminReducer = (state = { admins: [] }, action) => {
+    switch (action.type) {
+
+        case ALL_ADMINS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            }
+
+        case ALL_ADMINS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                admins: action.payload
+            }
+
+        case ALL_ADMINS_FAIL:
             return {
                 ...state,
                 loading: false,
@@ -287,6 +327,41 @@ export const userDetailsReducer = (state = { user: {} }, action) => {
             return state;
     }
 }
+export const AddAdminReducer = (state = { users: {} }, action) => {
+    switch (action.type) {
+
+        case ADD_ADMINS_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+
+        case ADD_ADMINS_SUCCESS:
+            return {
+                loading: false,
+                success: action.payload.success,
+                users: action.payload.user
+            }
+        case ADD_ADMINS_FAIL:
+            return {
+                ...state,
+                error: action.payload
+            }
+        case ADD_ADMINS_RESET:
+            return {
+                ...state,
+                success: false
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state
+    }
+}
 export const favoriteReducer = (state = {}, action) => {
     switch (action.type) {
         case ADD_FAVORITE_REQUEST:
@@ -314,17 +389,17 @@ export const favoriteReducer = (state = {}, action) => {
                 ...state,
                 error: action.payload
             }
-        
+
         case ADD_FAVORITE_RESET:
             return {
                 ...state,
                 is_favorite: false
             }
         case DELETE_FAVORITE_RESET:
-                return {
-                    ...state,
-                    is_Delete: false
-                }
+            return {
+                ...state,
+                is_Delete: false
+            }
         case CLEAR_ERRORS:
             return {
                 ...state,

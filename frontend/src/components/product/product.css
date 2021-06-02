@@ -10,7 +10,7 @@
 .rating-inner{
     position: absolute;
     top: 0;
-    left: 0;
+    left: 0px;
     white-space: nowrap;
     overflow: hidden;
     width: 0;
@@ -70,3 +70,12 @@
 .slider img{
   height: 350px;
 }
+.btn-color {
+  margin-right: 5px;
+  border-radius: 50px;
+  height: 45px;
+  border: 2px solid transparent;
+}
+.btn-color-active {
+  border: 2px solid black;
+} 

@@ -7,11 +7,10 @@ function NotFound() {
     return (
         <React.Fragment>
         <MetaData title={'404 - Not Found'} />
-         <React.Fragment>
-          
+         <React.Fragment> 
          <div className={`mt_20 ${rt1}`}>
-         <img  src="images/animation.gif" alt="empty cart"/>
-          <h2 className={`mb_40 `} style={{paddingRight:( i18n.language  === 'pk' ? '50px' : '')}}>Oops ! That page could not found</h2>
+         <img  src="images/4O4-Page.gif" style={{height:"400px"}} alt="404 Empty"/>
+          <h2 className={`mb_40 `} style={{paddingRight:( i18n.language  === 'pk' ? '50px' : '')}}>{t('404_error.error')}</h2>
            </div>
          </React.Fragment>
          </React.Fragment>

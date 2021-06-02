@@ -1,4 +1,4 @@
-import { ALL_ORDERS_FAIL, ALL_ORDERS_REQUEST, ALL_ORDERS_SUCCESS, CLEAR_ERRORS, CREATE_ORDER_FAIL, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, DELETE_ORDER_FAIL, DELETE_ORDER_REQUEST, DELETE_ORDER_RESET, DELETE_ORDER_SUCCESS, MY_ORDERS_FAIL, MY_ORDERS_REQUEST, MY_ORDERS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, TOTAL_ORDERS_FAIL, TOTAL_ORDERS_REQUEST, TOTAL_ORDERS_SUCCESS, UPDATE_ORDER_FAIL, UPDATE_ORDER_REQUEST, UPDATE_ORDER_RESET, UPDATE_ORDER_SUCCESS } from "../constants/orderConstants"
+import { ALL_DATE_ORDERS_FAIL, ALL_DATE_ORDERS_REQUEST, ALL_DATE_ORDERS_SUCCESS, ALL_ORDERS_FAIL, ALL_ORDERS_REQUEST, ALL_ORDERS_SUCCESS, CLEAR_ERRORS, CREATE_ORDER_FAIL, CREATE_ORDER_REQUEST, CREATE_ORDER_SUCCESS, DELETE_ORDER_FAIL, DELETE_ORDER_REQUEST, DELETE_ORDER_RESET, DELETE_ORDER_SUCCESS, MY_ORDERS_FAIL, MY_ORDERS_REQUEST, MY_ORDERS_SUCCESS, ORDER_DETAILS_FAIL, ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, TOTAL_ORDERS_FAIL, TOTAL_ORDERS_REQUEST, TOTAL_ORDERS_SUCCESS, UPDATE_ORDER_FAIL, UPDATE_ORDER_REQUEST, UPDATE_ORDER_RESET, UPDATE_ORDER_SUCCESS } from "../constants/orderConstants"
 
 export const newOrderReducer = (state = {}, action) => {
     switch (action.type) {
@@ -152,7 +152,36 @@ export const allTotalOrdersReducer = (state = { orders: [] }, action) => {
             return state;
     }
 }
+export const allDateOrdersReducer = (state = { orders: [] }, action) => {
+    switch (action.type) {
 
+        case ALL_DATE_ORDERS_REQUEST:
+            return {
+                loading: true
+            }
+
+        case ALL_DATE_ORDERS_SUCCESS:
+            return {
+                loading: false,
+                orders: action.payload.orders,
+                totalAmount: action.payload.totalAmount
+            }
+
+        case ALL_DATE_ORDERS_FAIL:
+            return {
+                loading: false,
+                error: action.payload
+            }
+        case CLEAR_ERRORS:
+            return {
+                ...state,
+                error: null
+            }
+
+        default:
+            return state;
+    }
+}
 export const orderReducer = (state = {}, action) => {
     switch (action.type) {
 

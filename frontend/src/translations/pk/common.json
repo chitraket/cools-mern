@@ -14,7 +14,8 @@
         "logout":"لاگ آوٹ"
     },
     "footer":{
-        "categories":"شکلیں"
+        "categories":"شکلیں",
+        "address":"بی 14 کولنس اسٹریٹ ویسٹ وکٹوریہ 2386"
     },
     "home":{
         "brand":"برانڈز",
@@ -159,7 +160,8 @@
         "city":"شہر",
         "phone":"فون نمبر",
         "post_code":"پوسٹ کوڈ",
-        "country":"ملک"
+        "country":"ملک",
+        "save_address":"ایڈریس کو محفوظ کریں"
     },
     "confirm_order":{
         "home":"گھر",
@@ -208,6 +210,9 @@
     },
     "slider":{
         "slider_not_found":"سلائیڈر نہیں ملی"
+    },
+    "404_error":{
+        "error":"افوہ ! وہ صفحہ نہیں مل سکا"
     }
 }
 

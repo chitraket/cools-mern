@@ -80,9 +80,9 @@ function Favorite() {
           {list.favorite && list.favorite.map(item => (
                 <React.Fragment>
                                   <tr key={item._id}>
-                <td className={`${rt1}`}><Link to={`/product/${item._id}`}><img height={'70px'} width={'70px'} src={item.images[0].url} alt={item.name} title={item.name}/></Link></td>
+                <td className={`${rt1}`}><Link to={`/product/${item._id}`}><img height={'70px'} width={'70px'} src={item.attribute && item.attribute[0].images[0].url} alt={item.name} title={item.name}/></Link></td>
             <td className={`${rt1}`}><Link to={`/product/${item._id}`}>{item.name}</Link></td>
-            <td className={`${rt1}`}>${item.price}</td>
+            <td className={`${rt1}`}>${item.attribute && item.attribute[0].price}</td>
             <td className={`${rt1}`}><span className="btn btn-danger" onClick={()=> favoriteDeleteHandler(item._id)}><i className="fa fa-trash " ></i></span></td>
             </tr>
                 </React.Fragment>

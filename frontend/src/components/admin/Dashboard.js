@@ -23,7 +23,7 @@ function Dashboard() {
         dispatch(getAdminProducts())
         dispatch(allTotalOrders())
         dispatch(allUsers())
-        dispatch(getBestProduct("sold", "desc"));
+        dispatch(getBestProduct("sold", "asc"));
     },[dispatch])
     
     return (
@@ -101,40 +101,7 @@ function Dashboard() {
                                 </div>
                             </div>
                         </div>
-                        <div className="row pr-4">
-                            <div className="col-xl-12 col-sm-12 mb_30 pb_20">
-                                <h5>Best Porduct</h5>
-                            <div className="table-responsive">
-          <table className="table table-bordered">
-            <thead>
-              <tr>
-                <td className="text-left">Name</td>
-                <td className="text-left">Category</td>
-                <td className="text-left">Brand</td>
-                <td className="text-left">Price</td>
-                <td className="text-left">Stock</td>
-                <td className="text-left">Sold</td>
-              </tr>
-            </thead>
-            <tbody>
 
-              {bestproduct.map(item => (
-                    <React.Fragment>
-                                      <tr key={item.id}>
-                                      <td className="text-left">{item.name}</td>
-                                    <td className="text-left">{item.category && item.category.name}</td>
-                                    <td className="text-left">{item.brand && item.brand.name}</td>
-                                    <td className="text-left">${item.price}</td>
-                                    <td className="text-left">{item.stock}</td>
-                                    <td className="text-left">{item.sold}</td>
-                </tr>
-                    </React.Fragment>
-                ))}
-            </tbody>
-          </table>
-        </div>
-                            </div>
-                        </div>
                     </React.Fragment>
                     )}
                 </div>

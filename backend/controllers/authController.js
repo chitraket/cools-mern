@@ -4,7 +4,7 @@ const ErrorHandler = require('../utils/errorHandler');
 const catchAsyncErrors = require('../middlewares/catchAsyncErrors');
 const sendToken = require('../utils/jwtToken');
 const sendEmail = require('../utils/sendEmail');
-const {isEmailValids, isPasswordValide} = require('../middlewares/validation')
+const { isEmailValids, isPasswordValide } = require('../middlewares/validation')
 
 const crypto = require('crypto');
 const cloudinary = require('cloudinary');
@@ -13,30 +13,30 @@ const Product = require('../models/product');
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     const { name, email, password } = req.body;
     const users = await User.findOne({ email });
-    const { isEmail , errors } = isEmailValids(email)
-    const { isPassword, errors:passworderrors}  = isPasswordValide(password)
-    if(!name){
-        return next(new ErrorHandler('register.register_validation.name_required',400))
+    const { isEmail, errors } = isEmailValids(email)
+    const { isPassword, errors: passworderrors } = isPasswordValide(password)
+    if (!name) {
+        return next(new ErrorHandler('register.register_validation.name_required', 400))
     }
-    else if(!isEmail){
-        return next(new ErrorHandler(errors,400))
+    else if (!isEmail) {
+        return next(new ErrorHandler(errors, 400))
     }
-    else if(!isPassword){
-        return next(new ErrorHandler(passworderrors,400))
+    else if (!isPassword) {
+        return next(new ErrorHandler(passworderrors, 400))
     }
-    if(users){
-        return next(new ErrorHandler('register.register_validation.email_already_taken',400))
+    if (users) {
+        return next(new ErrorHandler('register.register_validation.email_already_taken', 400))
     }
-    if(!req.body.avatar){
-        return next(new ErrorHandler('register.register_validation.image_required',400))
+    if (!req.body.avatar) {
+        return next(new ErrorHandler('register.register_validation.image_required', 400))
     }
     const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
         folder: 'avatars',
         width: 150,
         crop: "scale",
         allowedFormats: ['jpg', 'jpeg', 'png'],
-    },(err) => {
-        if(err){
+    }, (err) => {
+        if (err) {
             return next(new ErrorHandler('register.register_validation.file_type_not', err.http_code));
         }
     })
@@ -57,15 +57,13 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
 
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     const { email, password } = req.body;
-    const { isEmail , errors } = isEmailValids(email)
-    const { isPassword, errors:passworderrors}  = isPasswordValide(password)
-    if(!isEmail)
-    {
-        return next(new ErrorHandler(errors,400))
+    const { isEmail, errors } = isEmailValids(email)
+    const { isPassword, errors: passworderrors } = isPasswordValide(password)
+    if (!isEmail) {
+        return next(new ErrorHandler(errors, 400))
     }
-    else if(!isPassword)
-    {
-        return next(new ErrorHandler(passworderrors,400))
+    else if (!isPassword) {
+        return next(new ErrorHandler(passworderrors, 400))
     }
     const user = await User.findOne({ email }).select('+password')
     if (!user) {
@@ -84,11 +82,10 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
     const user = await User.findOne({ email: req.body.email });
-    const { isEmail , errors } = isEmailValids(req.body.email)
+    const { isEmail, errors } = isEmailValids(req.body.email)
 
-    if(!isEmail)
-    {
-        return next(new ErrorHandler(errors,400))
+    if (!isEmail) {
+        return next(new ErrorHandler(errors, 400))
     }
     if (!user) {
         return next(new ErrorHandler('forgot_password.forgot_password_validation.email_not_found', 404));
@@ -129,13 +126,13 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
 
 exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
-    const { isPassword, errors}  = isPasswordValide(req.body.password)
-    const { isPassword:password, errors:passworderrors}  = isPasswordValide(req.body.confirmPassword)
+    const { isPassword, errors } = isPasswordValide(req.body.password)
+    const { isPassword: password, errors: passworderrors } = isPasswordValide(req.body.confirmPassword)
 
-    if(!isPassword){
-        return next(new ErrorHandler(errors,400))
-    }else if(!password){
-        return next(new ErrorHandler(passworderrors,400))
+    if (!isPassword) {
+        return next(new ErrorHandler(errors, 400))
+    } else if (!password) {
+        return next(new ErrorHandler(passworderrors, 400))
     }
     const resetPasswordToken = crypto.createHash('sha256').update(req.params.token).digest('hex')
 
@@ -144,7 +141,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
         resetPasswordExpire: { $gt: Date.now() }
     })
 
-    if (!user) {  
+    if (!user) {
         return next(new ErrorHandler('reset_password.reset_password_validation.password_token', 400))
     }
 
@@ -153,7 +150,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
         return next(new ErrorHandler('reset_password.reset_password_validation.password_match', 400))
     }
 
-    
+
     user.password = req.body.password;
 
     user.resetPasswordToken = undefined;
@@ -177,15 +174,15 @@ exports.getUserProfile = catchAsyncErrors(async (req, res, next) => {
 
 
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
-   
-    const user = await User.findById(req.user.id).select('+password');   
+
+    const user = await User.findById(req.user.id).select('+password');
     const isMatched = await user.comparePassword(req.body.oldPassword)
     if (!isMatched) {
         return next(new ErrorHandler('update_password.update_password_validation.old_password_incorrect'));
     }
-    const { isPassword, errors}  = isPasswordValide(req.body.password)
-    if(!isPassword){
-        return next(new ErrorHandler(errors,400))
+    const { isPassword, errors } = isPasswordValide(req.body.password)
+    if (!isPassword) {
+        return next(new ErrorHandler(errors, 400))
     }
 
     user.password = req.body.password;
@@ -198,19 +195,19 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
-    const { isEmail , errors } = isEmailValids(req.body.email)
-    if(!req.body.name){
-        return next(new ErrorHandler('update_profile.update_profile_validation.name_required',400))
+    const { isEmail, errors } = isEmailValids(req.body.email)
+    if (!req.body.name) {
+        return next(new ErrorHandler('update_profile.update_profile_validation.name_required', 400))
     }
-    else if(!isEmail){
-        return next(new ErrorHandler(errors,400))
+    else if (!isEmail) {
+        return next(new ErrorHandler(errors, 400))
     }
     const newUserData = {
         name: req.body.name,
         email: req.body.email
     }
 
-   
+
     if (req.body.avatar !== '') {
         const user = await User.findById(req.user.id)
         const image_id = user.avatar.public_id;
@@ -221,8 +218,8 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
             width: 150,
             crop: "scale",
             allowedFormats: ['jpg', 'jpeg', 'png'],
-        },(err) => {
-            if(err){
+        }, (err) => {
+            if (err) {
                 return next(new ErrorHandler('register.register_validation.file_type_not', err.http_code));
             }
         })
@@ -258,7 +255,15 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 
 
 exports.allUsers = catchAsyncErrors(async (req, res, next) => {
-    const users = await User.find();
+    const users = await User.find({ 'role': { $ne: "admin" } });
+
+    res.status(200).json({
+        success: true,
+        users
+    })
+})
+exports.alladmin = catchAsyncErrors(async (req, res, next) => {
+    const users = await User.find({ 'role': { $ne: "user" } });
 
     res.status(200).json({
         success: true,
@@ -283,12 +288,33 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 
 
 exports.updateUser = catchAsyncErrors(async (req, res, next) => {
+    let users = await User.findById(req.params.id);
     const newUserData = {
         name: req.body.name,
         email: req.body.email,
-        role: req.body.role
     }
+    if (req.body.permission) {
+        newUserData.permission = req.body.permission && req.body.permission.split(',')
+    }
+    if (req.body.avatar !== '') {
+        const image_id = users.avatar.public_id;
+        const res = await cloudinary.v2.uploader.destroy(image_id);
+        const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+            folder: 'avatars',
+            width: 150,
+            crop: "scale",
+            allowedFormats: ['jpg', 'jpeg', 'png'],
+        }, (err) => {
+            if (err) {
+                return next(new ErrorHandler(err.message, err.http_code));
+            }
+        })
 
+        newUserData.avatar = {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    }
     const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
         new: true,
         runValidators: true,
@@ -296,23 +322,52 @@ exports.updateUser = catchAsyncErrors(async (req, res, next) => {
     })
 
     res.status(200).json({
-        success: true
+        success: true,
+        user
     })
 })
+exports.AddUser = catchAsyncErrors(async (req, res, next) => {
+    const { name, email, password } = req.body;
 
+    const result = await cloudinary.v2.uploader.upload(req.body.avatar, {
+        folder: 'avatars',
+        width: 150,
+        crop: "scale",
+        allowedFormats: ['jpg', 'jpeg', 'png'],
+    }, (err) => {
+        if (err) {
+            return next(new ErrorHandler('register.register_validation.file_type_not', err.http_code));
+        }
+    })
+    const user = await User.create({
+        name,
+        email,
+        password,
+        role: 'admin',
+        permission: req.body.permission && req.body.permission.split(','),
+        avatar: {
+            public_id: result.public_id,
+            url: result.secure_url
+        }
+    })
+    res.status(200).json({
+        success: true,
+        user
+    })
+})
 exports.addFavorite = catchAsyncErrors(async (req, res, next) => {
-    const {productId} = req.body
+    const { productId } = req.body
     const user = await User.findById(req.user.id);
 
     if (!user) {
         return next(new ErrorHandler(`User does not found with id: ${req.params.id}`))
     }
     const product = await Product.findById(productId);
-    if(!product){
+    if (!product) {
         return next(new ErrorHandler('Product not found', 404))
     }
-    await User.findByIdAndUpdate(req.user._id,{
-        $push:{favorite:productId}
+    await User.findByIdAndUpdate(req.user._id, {
+        $push: { favorite: productId }
     }, {
         new: true,
         runValidators: true,
@@ -326,9 +381,9 @@ exports.addFavorite = catchAsyncErrors(async (req, res, next) => {
 })
 
 exports.removeFavorite = catchAsyncErrors(async (req, res, next) => {
-    const {productId} = req.body
-    await User.findByIdAndUpdate(req.user._id,{
-        $pull:{favorite:productId}
+    const { productId } = req.body
+    await User.findByIdAndUpdate(req.user._id, {
+        $pull: { favorite: productId }
     }, {
         new: true,
         runValidators: true,
@@ -340,7 +395,7 @@ exports.removeFavorite = catchAsyncErrors(async (req, res, next) => {
 })
 exports.getFavorite = catchAsyncErrors(async (req, res, next) => {
     const list = await User.findById(req.user._id)
-    .populate("favorite")
+        .populate("favorite")
     res.status(200).json({
         success: true,
         list

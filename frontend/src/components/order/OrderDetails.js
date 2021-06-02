@@ -71,6 +71,7 @@ function OrderDetails({ match }) {
                         <td className="text-center">Image</td>
                         <td className="text-left">Product Name</td>
                         <td className="text-left">Category</td>
+                        <td className="text-left">Color</td>
                         <td className="text-left">Quantity</td>
                         <td className="text-right">Unit Price</td>
                         <td className="text-right">Total</td>
@@ -84,6 +85,7 @@ function OrderDetails({ match }) {
                             <td className="text-center"><Link to={`/product/${item.product}`}><img height={'70px'} width={'70px'} src={item.image} alt={item.name} title={item.name} /></Link></td>
                             <td className="text-left"><Link to={`/products/${item.product}`}>{item.name}</Link></td>
                             <td className="text-left">{item.category}</td>
+                            <td className="text-left">{item.color}</td>
                             <td className="text-left">{item.quantity}</td>
                             <td className="text-right">${item.price}</td>
                             <td className="text-right">${(item.price * item.quantity).toFixed(2)}</td>

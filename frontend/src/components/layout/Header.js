@@ -14,30 +14,30 @@ const Header = () => {
   const alert = useAlert();
   const disptach = useDispatch();
   const [t, i18n] = useTranslation('common');
-  const rt1 = ( i18n.language === 'pk' ? 'text-right' : 'text-left' )
-  const rt2 = ( i18n.language === 'pk' ? 'text-left' : 'text-left' )
-  const rth1 = ( i18n.language === 'pk' ? 'header-top-right text-right' : 'header-top-left text-left' )
-  const rth2 = ( i18n.language === 'pk' ? 'header-top-left text-left' : 'header-top-right text-right' )
-  const rtmc1 = ( i18n.language === 'pk' ? 'pull-right' : 'pull-left' )
-  const rtmc2 = ( i18n.language === 'pk' ? 'pull-left' : 'pull-right' )
+  const rt1 = (i18n.language === 'pk' ? 'text-right' : 'text-left')
+  const rt2 = (i18n.language === 'pk' ? 'text-left' : 'text-left')
+  const rth1 = (i18n.language === 'pk' ? 'header-top-right text-right' : 'header-top-left text-left')
+  const rth2 = (i18n.language === 'pk' ? 'header-top-left text-left' : 'header-top-right text-right')
+  const rtmc1 = (i18n.language === 'pk' ? 'pull-right' : 'pull-left')
+  const rtmc2 = (i18n.language === 'pk' ? 'pull-left' : 'pull-right')
   const [value, setValue] = React.useState(i18n.language);
-  const { isAuthenticated,user, loading } = useSelector(state => state.auth)
-  const {  category,error:categroyError } = useSelector(state => state.category)
-  const { brand,error:brandError} = useSelector(state => state.brand)
+  const { isAuthenticated, user, loading } = useSelector(state => state.auth)
+  const { category, error: categroyError } = useSelector(state => state.category)
+  const { brand, error: brandError } = useSelector(state => state.brand)
   const { cartItems } = useSelector(state => state.cart)
   React.useEffect(() => {
     localStorage.setItem('language', value);
     disptach(getCategory());
     disptach(getBrand());
-    if(categroyError){
+    if (categroyError) {
       alert.error(categroyError)
       disptach(clearErrors())
-      }
-     if(brandError){
-        alert.error(brandError)
-        disptach(clearErrors())
-     }
-  }, [disptach,value,categroyError,brandError,alert]);
+    }
+    if (brandError) {
+      alert.error(brandError)
+      disptach(clearErrors())
+    }
+  }, [disptach, value, categroyError, brandError, alert]);
 
   const onChange = event => {
     setValue(event.target.value)
@@ -47,15 +47,15 @@ const Header = () => {
     disptach(removeItemFromCart(id))
   }
 
-  const increaseQty = (id, quantity, stock) => {
+  const increaseQty = (id, quantity, stock, color) => {
     const newQty = quantity + 1;
     if (newQty > stock) return;
-    disptach(addItemToCart(id, newQty))
+    disptach(addItemToCart(id, newQty, color))
   }
-  const decreaseQty = (id, quantity) => {
+  const decreaseQty = (id, quantity, color) => {
     const newQty = quantity - 1;
     if (newQty <= 0) return;
-    disptach(addItemToCart(id, newQty))
+    disptach(addItemToCart(id, newQty, color))
   }
   const logoutHandler = () => {
     disptach(logout())
@@ -70,7 +70,7 @@ const Header = () => {
               <div className={`col-sm-6 ${rtmc1}`}>
                 <ul className={`${rth1}`} >
                   <li className="language dropdown">
-                    <select value={value} onChange={onChange} style={{backgroundColor:'#000',color:'#fff',borderColor:'#000'}}>
+                    <select value={value} onChange={onChange} style={{ backgroundColor: '#000', color: '#fff', borderColor: '#000' }}>
                       <option value="en">English</option>
                       <option value="in">Hindi</option>
                       <option value="bd" >Bangla</option>
@@ -84,11 +84,11 @@ const Header = () => {
                   {isAuthenticated ? (
                     <React.Fragment>
                       <li className="account">{user && user.name}</li>
-                      { user && user.role !== 'admin' ? (
+                      {user && user.role !== 'admin' ? (
                         <React.Fragment>
-                        <li className="account"><Link to={'/orders/me'}>{t('navbar.order')}</Link></li>
-                        <li className="sitemap"><Link to="/me/favorite">{t('navbar.favorite')}</Link></li>
-                        </React.Fragment> 
+                          <li className="account"><Link to={'/orders/me'}>{t('navbar.order')}</Link></li>
+                          <li className="sitemap"><Link to="/me/favorite">{t('navbar.favorite')}</Link></li>
+                        </React.Fragment>
                       ) : (
                         <li className="account"><Link to={'/dashboard'}>{t('navbar.dashboard')}</Link></li>
                       )}
@@ -104,16 +104,16 @@ const Header = () => {
         <div className="header">
           <div className="container">
             <nav className="navbar">
-              <div className={`navbar-header mtb_20 ${rtmc1} `}> <Link className="navbar-brand" to={'/'}> <img alt="Coolsd" src="images/logo.png" /> </Link> </div>
+              <div className={`navbar-header mtb_20 ${rtmc1} `}> <Link className="navbar-brand" to={'/'}> <img alt="Coolsd" src="../../images/logo.png" /> </Link> </div>
               <div className={`${rtmc2} mtb_50`}>
                 <button className={`navbar-toggle ${rtmc2}`} type="button" data-toggle="collapse" data-target=".js-navbar-collapse"> <span className="i-bar"><i className="fa fa-bars" /></span></button>
                 <div className="shopping-icon">
                   <div className={`cart-item`} data-target="#cart-dropdown" data-toggle="collapse" aria-expanded="true" role="button"> {t('navbar.items')} : <span className="cart-qty">{cartItems.length}</span></div>
-                  <div id="cart-dropdown" className="cart-menu collapse" style={{left:( i18n.language  === 'pk' ? '1px' : '')}}>
+                  <div id="cart-dropdown" className="cart-menu collapse" style={{ left: (i18n.language === 'pk' ? '1px' : '') }}>
                     {cartItems.length === 0 ?
                       <React.Fragment>
                         <center>
-                          <img className="mt_20" src="images/shopping-cart.png" alt="empty to cart" />
+                          <img className="mt_20" src="../../images/shopping-cart.png" alt="empty to cart" />
                           <h4 className={`mtb_20`} >{t('cart.empty_cart')}</h4>
                         </center>
                       </React.Fragment>
@@ -130,9 +130,9 @@ const Header = () => {
                                         <td className={`${rt1} product-name`}><Link to={`/product/${item.product}`}>{item.name}</Link>
                                           <span className={`${rt1} price`}>${item.price}</span>
                                           <React.Fragment>
-                                            <span style={{ marginRight: '15px', fontSize: '15px' }} onClick={() => decreaseQty(item.product, item.quantity)}>-</span>
+                                            <span style={{ marginRight: '15px', fontSize: '15px' }} onClick={() => decreaseQty(item.product, item.quantity, item.color)}>-</span>
                                             <label style={{ fontSize: '15px' }}>{item.quantity}</label>
-                                            <span style={{ marginLeft: '15px', fontSize: '15px' }} onClick={() => increaseQty(item.product, item.quantity, item.stock)} >+</span>
+                                            <span style={{ marginLeft: '15px', fontSize: '15px' }} onClick={() => increaseQty(item.product, item.quantity, item.stock, item.color)} >+</span>
                                           </React.Fragment>
                                         </td>
                                         <td className={`text-center ${rt2}`}><span className="close-cart" onClick={() => removeCartItemHandler(item.product)}><i className="fa fa-times-circle" /></span></td>
@@ -173,30 +173,30 @@ const Header = () => {
                       )}
                   </div>
                 </div>
-                <Route render={({ history }) => <Search history={history}  rtmc2={rtmc2}/>} />
+                <Route render={({ history }) => <Search history={history} rtmc2={rtmc2} />} />
               </div>
               <div className={`collapse navbar-collapse js-navbar-collapse ${rtmc2}`}>
                 <ul id="menu" className={`nav navbar-nav `}>
-                  <li><NavLink to={'/'}>{t('navbar.home')}</NavLink></li> 
+                  <li><NavLink to={'/'}>{t('navbar.home')}</NavLink></li>
                   <li className="dropdown mega-dropdown"> <a href="!#" className="dropdown-toggle" data-toggle="dropdown">{t('navbar.glasses')}</a>
                     <ul className="dropdown-menu mega-dropdown-menu row">
                       <li className="col-md-3" className={`${rtmc1}`}>
                         <ul className={`${rt1}`}>
                           <li className="dropdown-header">{t('navbar.categories')}</li>
                           {category && category.map(categorys => (
-                            <li key={categorys._id}><Link to={ categorys.type === 'store' ? `/category/${categorys._id}` : `/search/category/${categorys._id}`}> {categorys.name}</Link></li>
+                            <li key={categorys._id}><Link to={categorys.type === 'store' ? `/category/${categorys._id}` : `/search/category/${categorys._id}`}> {categorys.name}</Link></li>
                           ))}
                         </ul>
                       </li>
-    <li className="col-md-3" className={`${rtmc1}`}>
-      <ul className={`${rt1}`}>
-        <li className="dropdown-header">{t('navbar.brand')}</li>
-        {brand && brand.map(brands => (
-            <li  key={brands._id} key={brands._id}><Link to={ brands.type === 'store' ? `/brand/${brands._id}` : `/search/brand/${brands._id}`}>{brands.name}</Link></li>
-        ))}
-      </ul>
-    </li>
-    {/* <li className="col-md-3">
+                      <li className="col-md-3" className={`${rtmc1}`}>
+                        <ul className={`${rt1}`}>
+                          <li className="dropdown-header">{t('navbar.brand')}</li>
+                          {brand && brand.map(brands => (
+                            <li key={brands._id} key={brands._id}><Link to={brands.type === 'store' ? `/brand/${brands._id}` : `/search/brand/${brands._id}`}>{brands.name}</Link></li>
+                          ))}
+                        </ul>
+                      </li>
+                      {/* <li className="col-md-3">
       <ul>
         <li id="myCarousel" className="carousel slide" data-ride="carousel">
           <div className="carousel-inner">
@@ -212,8 +212,8 @@ const Header = () => {
      
       </ul>
     </li> */}
-  </ul>
-</li>
+                    </ul>
+                  </li>
 
                 </ul>
               </div>

@@ -42,11 +42,16 @@ const userSchema = new mongoose.Schema({
     },
     favorite: [
         {
-                type: mongoose.Schema.ObjectId,
-                ref: 'Product',
+            type: mongoose.Schema.ObjectId,
+            ref: 'Product',
         }
     ],
-    status:{
+    permission: [
+        {
+            type: String,
+        }
+    ],
+    status: {
         type: String,
         default: 'false'
     },
@@ -81,4 +86,4 @@ userSchema.methods.getResetPasswordToken = function () {
     return resetToken
 
 }
-module.exports = mongoose.model('User',userSchema);
+module.exports = mongoose.model('User', userSchema);

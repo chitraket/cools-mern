@@ -14,15 +14,15 @@ function Cart({history}) {
     const removeCartItemHandler = (id) => {
       dispatch(removeItemFromCart(id))
     }
-    const increaseQty=(id , quantity , stock)=> {
+    const increaseQty=(id , quantity , stock,color)=> {
         const newQty = quantity + 1;
         if(newQty > stock) return;
-        dispatch(addItemToCart(id,newQty))
+        dispatch(addItemToCart(id,newQty,color))
       }
-      const decreaseQty=(id,quantity)=> {
+      const decreaseQty=(id,quantity,color)=> {
         const newQty = quantity - 1;
         if(newQty <= 0) return;
-        dispatch(addItemToCart(id,newQty))
+        dispatch(addItemToCart(id,newQty,color))
       }
       const checkoutHandler=()=> {
         history.push('/login?redirect=shipping')
@@ -329,6 +329,7 @@ function Cart({history}) {
                 <td className={`${rt1}`}>{t('cart.image')}</td>
                 <td className={`${rt1}`}>{t('cart.name')}</td>
                 <td className={`${rt1}`}>{t('cart.category')}</td>
+                <td className={`${rt1}`}>Color</td>
                 <td className={`${rt1}`}>{t('cart.quantity')}</td>
                 <td className={`${rt1}`}>{t('cart.unit_price')}</td>
                 <td className={`${rt1}`}>{t('cart.total')}</td>
@@ -343,11 +344,12 @@ function Cart({history}) {
                     <td className={`${rt1}`}><Link to={`/product/${item.product}`}><img height={'70px'} width={'70px'} src={item.image} alt={item.name} title={item.name}/></Link></td>
                 <td className={`${rt1}`}><Link to={`/product/${item.product}`}>{item.name}</Link></td>
                 <td className={`${rt1}`}>{item.category}</td>
+                <td className={`${rt1}`}>{item.color}</td>
                 <td className={`${rt1}`}>
                     <div className="stockCounter d-inline">
-                                <span className="btn btn-danger minus" style={{marginRight:'5px'}} onClick={()=> decreaseQty(item.product,item.quantity)}>-</span>
+                                <span className="btn btn-danger minus" style={{marginRight:'5px'}} onClick={()=> decreaseQty(item.product,item.quantity,item.color)}>-</span>
                                 <input type="number" className="form-control count d-inline quantity" style={{width:'15%'}}  value={item.quantity} readOnly />
-                                <span className="btn btn-danger plus" style={{marginLeft:'5px'}} onClick={()=> increaseQty(item.product,item.quantity,item.stock)} >+</span>
+                                <span className="btn btn-danger plus" style={{marginLeft:'5px'}} onClick={()=> increaseQty(item.product,item.quantity,item.stock,item.color)} >+</span>
                             </div>
                 </td>
                 <td className={`${rt1}`}>${item.price}</td>

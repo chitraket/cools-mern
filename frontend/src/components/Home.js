@@ -57,7 +57,7 @@ function Home() {
       {
           breakpoint: 1024,
           settings: {
-              slidesToShow: 3,
+              slidesToShow: Object.keys(category).length > 3? 3 : Object.keys(category).length,
               slidesToScroll: 3,
               infinite: true,
               dots: false
@@ -66,7 +66,7 @@ function Home() {
       {
           breakpoint: 768,
           settings: {
-              slidesToShow: 3,
+              slidesToShow: Object.keys(category).length > 3? 3 : Object.keys(category).length,
               slidesToScroll: 3,
               initialSlide: 3
           }
@@ -74,7 +74,7 @@ function Home() {
       {
           breakpoint: 600,
           settings: {
-              slidesToShow: 2,
+              slidesToShow: Object.keys(category).length > 2? 2 : Object.keys(category).length,
               slidesToScroll: 2,
               initialSlide: 2
           }
@@ -82,7 +82,7 @@ function Home() {
       {
           breakpoint: 480,
           settings: {
-              slidesToShow: 1,
+              slidesToShow: Object.keys(category).length > 1? 1 : Object.keys(category).length,
               slidesToScroll: 1
           }
       }
@@ -114,7 +114,7 @@ function Home() {
       {
           breakpoint: 1024,
           settings: {
-              slidesToShow: 3,
+              slidesToShow: Object.keys(brand).length > 3 ? 3 : Object.keys(brand).length,
               slidesToScroll: 3,
               infinite: true,
               dots: false
@@ -123,7 +123,7 @@ function Home() {
       {
           breakpoint: 768,
           settings: {
-              slidesToShow: 3,
+              slidesToShow: Object.keys(brand).length > 3 ? 3 : Object.keys(brand).length,
               slidesToScroll: 3,
               initialSlide: 3
           }
@@ -131,7 +131,7 @@ function Home() {
       {
           breakpoint: 600,
           settings: {
-              slidesToShow: 2,
+              slidesToShow: Object.keys(brand).length > 2 ? 2 : Object.keys(brand).length,
               slidesToScroll: 2,
               initialSlide: 2
           }
@@ -139,7 +139,7 @@ function Home() {
       {
           breakpoint: 480,
           settings: {
-              slidesToShow: 1,
+              slidesToShow: Object.keys(brand).length > 1 ? 1 : Object.keys(brand).length,
               slidesToScroll: 1
           }
       }
@@ -148,10 +148,8 @@ function Home() {
   return (
     <React.Fragment>
       {loading ? <Loader/> : (
-        
           <div className="wrapper">
              <MetaData title={'Buy Best Products Online'} />
-          {/* =====  BANNER STRAT  ===== */}
           <div className="banner">
               <Slider {...settingss}>
               {slider && slider.map(sliders => (
@@ -159,13 +157,10 @@ function Home() {
                     ))}
               </Slider>
           </div>
-          {/* =====  BANNER END  ===== */}
           <div className="row">
           </div>
-          {/* =====  CONTAINER START  ===== */}
           <div className="container">
             <div className="row ">
-              
               <div className="pt_30 text-center">
                 <div className="type-01">
                   <div className="col-sm-12">
@@ -177,8 +172,8 @@ function Home() {
                   </div>
                 </div>
               </div>
-              <NewProduct carousel={carousel} title={t('home.new_product')} sort="createdAt" order="desc" rt1={rt1} rta1={rta1} i18n={i18n} t={t}/>
-              <TopProduct carousel={carousel} title={t('home.best_selling_product')} sort="sold" order="desc"  rt1={rt1} rta1={rta1} i18n={i18n} t={t}/>
+              <NewProduct  title={t('home.new_product')} sort="createdAt" order="desc" rt1={rt1} rta1={rta1} i18n={i18n} t={t}/>
+              <TopProduct  title={t('home.best_selling_product')} sort="sold" order="asc"  rt1={rt1} rta1={rta1} i18n={i18n} t={t}/>
             </div>
             <div id="brand_carouse" className="mtb_40 text-center">
               <div className="type-01">
@@ -208,7 +203,6 @@ function Home() {
               </div>
             </div>
           </div>
-          {/* =====  CONTAINER END  ===== */}
         </div>
       )}
 

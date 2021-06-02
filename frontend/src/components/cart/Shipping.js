@@ -85,7 +85,7 @@ const Shipping = ({ history }) => {
                     </div>
                     <div className="buttons clearfix">
                       <div className="pull-right">
-                        <input type="submit" className="btn"  id="button-payment-address" value={"submit"} />
+                        <input type="submit" className="btn"  id="button-payment-address" value={t('shopping.save_address')} />
                       </div>
                     </div>
                   </form>
